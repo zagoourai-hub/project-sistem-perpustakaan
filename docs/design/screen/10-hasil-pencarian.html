@@ -1,0 +1,626 @@
+<!DOCTYPE html><html lang="id" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "surface-container": "#f3ede6",
+          "primary": "#5b0d0d",
+          "on-error-container": "#93000a",
+          "primary-fixed": "#ffdad6",
+          "on-surface": "#1d1b17",
+          "inverse-on-surface": "#f6f0e9",
+          "on-surface-variant": "#564240",
+          "inverse-primary": "#ffb4ac",
+          "on-primary-fixed": "#410003",
+          "surface-container-high": "#ede7e0",
+          "on-secondary": "#ffffff",
+          "surface-dim": "#dfd9d2",
+          "tertiary": "#422600",
+          "tertiary-fixed-dim": "#ffb963",
+          "secondary-fixed-dim": "#b0cfa9",
+          "on-tertiary-container": "#e7a148",
+          "on-secondary-fixed": "#072108",
+          "tertiary-container": "#603a00",
+          "on-primary": "#ffffff",
+          "on-secondary-container": "#4e6a4a",
+          "on-primary-container": "#ff9086",
+          "error": "#ba1a1a",
+          "surface-variant": "#e8e2db",
+          "background": "#fff8f1",
+          "inverse-surface": "#33302c",
+          "primary-container": "#7a2420",
+          "surface-container-lowest": "#ffffff",
+          "outline-variant": "#dcc0bd",
+          "surface": "#fff8f1",
+          "surface-bright": "#fff8f1",
+          "on-tertiary-fixed-variant": "#663e00",
+          "secondary-container": "#c9e8c1",
+          "on-secondary-fixed-variant": "#334d30",
+          "surface-container-highest": "#e8e2db",
+          "tertiary-fixed": "#ffddb9",
+          "surface-container-low": "#f9f3ec",
+          "secondary": "#4a6546",
+          "secondary-fixed": "#ccebc4",
+          "on-error": "#ffffff",
+          "on-tertiary-fixed": "#2b1700",
+          "error-container": "#ffdad6",
+          "on-tertiary": "#ffffff",
+          "outline": "#89726f",
+          "surface-tint": "#9f3f39",
+          "primary-fixed-dim": "#ffb4ac",
+          "on-background": "#1d1b17",
+          "on-primary-fixed-variant": "#802824"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "sm": "8px",
+          "3xl": "96px",
+          "md": "16px",
+          "2xl": "64px",
+          "xl": "40px",
+          "lg": "24px",
+          "xs": "4px"
+        },
+        "fontFamily": {
+          "label": [
+            "Work Sans"
+          ],
+          "body-sm": [
+            "Work Sans"
+          ],
+          "display": [
+            "Anton"
+          ],
+          "data-lg": [
+            "IBM Plex Mono"
+          ],
+          "h2": [
+            "Anton"
+          ],
+          "book-title": [
+            "Work Sans"
+          ],
+          "body-lg": [
+            "Work Sans"
+          ],
+          "data": [
+            "IBM Plex Mono"
+          ],
+          "body-md": [
+            "Work Sans"
+          ],
+          "kicker": [
+            "Work Sans"
+          ],
+          "h1": [
+            "Anton"
+          ],
+          "h3": [
+            "Anton"
+          ]
+        },
+        "fontSize": {
+          "label": [
+            "0.875rem",
+            {
+              "lineHeight": "1.2",
+              "fontWeight": "500"
+            }
+          ],
+          "body-sm": [
+            "0.875rem",
+            {
+              "lineHeight": "1.5",
+              "fontWeight": "400"
+            }
+          ],
+          "display": [
+            "4.5rem",
+            {
+              "lineHeight": "1.05",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "data-lg": [
+            "2.5rem",
+            {
+              "lineHeight": "1",
+              "fontWeight": "500"
+            }
+          ],
+          "h2": [
+            "1.75rem",
+            {
+              "lineHeight": "1.2",
+              "fontWeight": "400"
+            }
+          ],
+          "book-title": [
+            "1.125rem",
+            {
+              "lineHeight": "1.3",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "1.125rem",
+            {
+              "lineHeight": "1.6",
+              "fontWeight": "400"
+            }
+          ],
+          "data": [
+            "0.875rem",
+            {
+              "lineHeight": "1.4",
+              "fontWeight": "400"
+            }
+          ],
+          "body-md": [
+            "1rem",
+            {
+              "lineHeight": "1.55",
+              "fontWeight": "400"
+            }
+          ],
+          "kicker": [
+            "0.75rem",
+            {
+              "lineHeight": "1.2",
+              "letterSpacing": "0.12em",
+              "fontWeight": "600"
+            }
+          ],
+          "h1": [
+            "2.5rem",
+            {
+              "lineHeight": "1.1",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "h3": [
+            "1.25rem",
+            {
+              "lineHeight": "1.3",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-md border-b border-outline-variant/40"><div class="h-2xl max-w-[1200px] mx-auto px-lg flex items-center justify-between"><div class="flex items-center gap-md"><a class="font-h2 text-h2 tracking-normal text-on-surface hover:text-primary transition-colors uppercase" data-path="opac-home" href="#">PUSTAKA</a><span class="h-4 w-[1px] bg-outline-variant"></span><span class="font-body-sm text-body-sm text-on-surface-variant font-medium tracking-tight hidden sm:inline-block">Perpustakaan SMA Nusantara</span></div><div class="flex items-center gap-lg"><nav class="hidden md:flex items-center gap-lg" data-active-classes="text-primary font-semibold underline decoration-2 underline-offset-8"><a aria-current="page" class="transition-colors text-primary font-semibold underline decoration-2 underline-offset-8" data-path="search-results" href="#">Katalog</a><a class="font-label text-label text-on-surface-variant hover:text-on-surface transition-colors" data-path="library-hours" href="#">Jam Buka</a><a class="font-label text-label text-on-surface-variant hover:text-on-surface transition-colors" data-path="help" href="#">Bantuan</a></nav><div class="flex items-center gap-md pl-sm border-l border-outline-variant/30"><a class="h-10 px-md flex items-center justify-center font-label text-label bg-surface-container border border-outline text-on-surface rounded hover:bg-surface-container-high transition-colors" data-path="member-login" href="#">Masuk</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-2xl bg-surface min-h-[calc(100vh-140px)]"><div class="flex flex-col w-full">
+<!-- SEARCH BAR & QUERY CONTEXT -->
+<section class="max-w-[1200px] w-full mx-auto px-lg pt-xl pb-lg border-b border-outline-variant/40">
+<div class="relative w-full">
+<div class="h-16 w-full bg-surface-container-lowest border border-outline/50 rounded flex items-center px-md gap-md focus-within:border-on-surface focus-within:ring-1 focus-within:ring-on-surface transition-all">
+<span class="material-symbols-outlined text-on-surface-variant text-[22px] select-none">search</span>
+<input aria-label="Cari katalog perpustakaan" class="flex-1 bg-transparent font-body-md text-body-md text-on-surface outline-none placeholder:text-on-surface-variant/60" id="opac-search-input" type="text" value="novel tentang persahabatan di sekolah">
+<button aria-label="Bersihkan pencarian" class="text-on-surface-variant hover:text-on-surface p-1 transition-colors" onclick="document.getElementById('opac-search-input').value=''; document.getElementById('opac-search-input').focus();" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+<button class="h-10 px-lg bg-primary text-on-primary font-label text-label rounded hover:bg-primary-container transition-colors flex items-center justify-center font-medium tracking-wide" type="button">
+          Cari
+        </button>
+</div>
+</div>
+<!-- SUMMARY METADATA & SORT -->
+<div class="pt-lg flex flex-col sm:flex-row justify-between sm:items-end gap-md">
+<div>
+<div class="font-data text-kicker uppercase tracking-widest text-on-surface-variant mb-xs">HASIL PENCARIAN</div>
+<div class="flex items-baseline gap-md">
+<h1 class="font-h1 text-h1 uppercase text-on-surface tracking-tight">38 JUDUL</h1>
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+            untuk <span class="font-medium text-on-surface">“novel tentang persahabatan di sekolah”</span> · <span class="font-data text-data">0,42 detik</span>
+</span>
+</div>
+</div>
+<div class="flex items-center gap-sm self-start sm:self-auto">
+<label class="font-label text-label text-on-surface-variant sr-only" for="sort-select">Urutkan hasil</label>
+<div class="relative inline-block">
+<select class="appearance-none font-label text-label bg-surface-container-lowest border border-outline-variant/60 text-on-surface px-md py-2 pr-8 rounded focus:outline-none focus:border-on-surface cursor-pointer" id="sort-select">
+<option selected="">Urutkan: Paling relevan</option>
+<option>Tahun terbit: Terbaru</option>
+<option>Tahun terbit: Terlama</option>
+<option>Judul: A – Z</option>
+<option>Paling banyak dipinjam</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">
+            expand_more
+          </span>
+</div>
+</div>
+</div>
+</section>
+<!-- 3 / 9 COLUMN MAGAZINE SPREAD -->
+<main class="max-w-[1200px] w-full mx-auto px-lg py-xl flex flex-col md:flex-row gap-lg md:gap-xl">
+<!-- LEFT COLUMN: FACETED FILTERS -->
+<aside class="w-full md:w-[260px] flex-shrink-0 md:pr-lg md:border-r border-outline-variant/40">
+<div class="flex items-center justify-between pb-sm border-b border-outline-variant/40 mb-md">
+<span class="font-data text-kicker uppercase tracking-widest text-on-surface-variant">FILTER HASIL</span>
+<a class="font-label text-xs text-primary hover:underline hover:text-on-primary-fixed-variant transition-colors" href="#">Reset filter</a>
+</div>
+<!-- Filter Group 1: Ketersediaan -->
+<div class="py-md border-b border-outline-variant/30">
+<div class="font-label text-label font-semibold text-on-surface mb-sm">Ketersediaan</div>
+<label class="flex items-center justify-between cursor-pointer py-1 group">
+<div class="flex items-center gap-sm">
+<input checked="" class="w-4 h-4 accent-primary rounded bg-surface-container-lowest border border-outline focus:ring-0 cursor-pointer" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Tersedia sekarang</span>
+</div>
+<span class="font-data text-data text-on-surface-variant">(21)</span>
+</label>
+</div>
+<!-- Filter Group 2: Subjek -->
+<div class="py-md border-b border-outline-variant/30">
+<div class="font-label text-label font-semibold text-on-surface mb-sm">Subjek</div>
+<div class="flex flex-col gap-1">
+<label class="flex items-center justify-between cursor-pointer py-1 group">
+<div class="flex items-center gap-sm">
+<input checked="" class="w-4 h-4 accent-primary rounded bg-surface-container-lowest border border-outline focus:ring-0 cursor-pointer" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Fiksi Indonesia</span>
+</div>
+<span class="font-data text-data text-on-surface-variant">(24)</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer py-1 group">
+<div class="flex items-center gap-sm">
+<input checked="" class="w-4 h-4 accent-primary rounded bg-surface-container-lowest border border-outline focus:ring-0 cursor-pointer" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Fiksi Remaja</span>
+</div>
+<span class="font-data text-data text-on-surface-variant">(11)</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer py-1 group">
+<div class="flex items-center gap-sm">
+<input class="w-4 h-4 accent-primary rounded bg-surface-container-lowest border border-outline focus:ring-0 cursor-pointer" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Terjemahan</span>
+</div>
+<span class="font-data text-data text-on-surface-variant">(3)</span>
+</label>
+</div>
+</div>
+<!-- Filter Group 3: Rentang Tahun -->
+<div class="py-md border-b border-outline-variant/30">
+<div class="font-label text-label font-semibold text-on-surface mb-sm">Tahun terbit</div>
+<div class="flex items-center gap-xs">
+<input aria-label="Tahun awal" class="w-20 px-2 py-1 font-data text-data bg-surface-container-lowest border border-outline/40 rounded text-on-surface focus:outline-none focus:border-on-surface text-center" maxlength="4" type="text" value="1990">
+<span class="font-data text-data text-on-surface-variant px-1">–</span>
+<input aria-label="Tahun akhir" class="w-20 px-2 py-1 font-data text-data bg-surface-container-lowest border border-outline/40 rounded text-on-surface focus:outline-none focus:border-on-surface text-center" maxlength="4" type="text" value="2026">
+<button class="px-2 py-1 bg-surface-container border border-outline-variant/60 rounded font-label text-xs hover:bg-surface-container-high transition-colors" type="button">
+            Terapkan
+          </button>
+</div>
+</div>
+<!-- Filter Group 4: Bahasa -->
+<div class="py-md border-b border-outline-variant/30">
+<div class="font-label text-label font-semibold text-on-surface mb-sm">Bahasa</div>
+<div class="flex flex-col gap-1">
+<label class="flex items-center justify-between cursor-pointer py-1 group">
+<div class="flex items-center gap-sm">
+<input checked="" class="w-4 h-4 accent-primary rounded bg-surface-container-lowest border border-outline focus:ring-0 cursor-pointer" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Indonesia</span>
+</div>
+<span class="font-data text-data text-on-surface-variant">(35)</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer py-1 group">
+<div class="flex items-center gap-sm">
+<input class="w-4 h-4 accent-primary rounded bg-surface-container-lowest border border-outline focus:ring-0 cursor-pointer" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Inggris</span>
+</div>
+<span class="font-data text-data text-on-surface-variant">(3)</span>
+</label>
+</div>
+</div>
+<!-- Filter Group 5: Lokasi Koleksi -->
+<div class="py-md">
+<div class="font-label text-label font-semibold text-on-surface mb-sm">Ruang Koleksi</div>
+<div class="flex flex-col gap-1">
+<label class="flex items-center justify-between cursor-pointer py-1 group">
+<div class="flex items-center gap-sm">
+<input class="w-4 h-4 accent-primary rounded bg-surface-container-lowest border border-outline focus:ring-0 cursor-pointer" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Sirkulasi Umum</span>
+</div>
+<span class="font-data text-data text-on-surface-variant">(32)</span>
+</label>
+<label class="flex items-center justify-between cursor-pointer py-1 group">
+<div class="flex items-center gap-sm">
+<input class="w-4 h-4 accent-primary rounded bg-surface-container-lowest border border-outline focus:ring-0 cursor-pointer" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface group-hover:text-primary transition-colors">Koleksi Referensi</span>
+</div>
+<span class="font-data text-data text-on-surface-variant">(6)</span>
+</label>
+</div>
+</div>
+</aside>
+<!-- RIGHT COLUMN: SEARCH RESULTS EDITORIAL ROWS -->
+<section aria-label="Daftar Buku" class="flex-1 min-w-0">
+<!-- ROW 1: Laskar Pelangi -->
+<article class="flex flex-col sm:flex-row items-start gap-md py-lg border-b border-outline-variant/40 group">
+<div class="w-16 h-24 flex-shrink-0 rounded bg-surface-container-high border border-outline-variant/50 overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Editorial book cover photograph for Laskar Pelangi by Andrea Hirata. Atmospheric shot of rural Belitung elementary school students walking along a dirt road under soft tropical morning light. Warm sepia, earth tones, matte book jacket texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUavxjtifCKDiBGyl48vRYRkv1yoHvA8Xu2GUi4AGH_CBbGyb3tmt1rYxK0x3llu9MwGCTZ2WCy3EKQT3qbuPNig6AyhUue_LdOiYCZNpYg4WNt5F1GIQKjR_he3YsI_FKf4OPoUi_AJsaaRTNNy6xpOJxYLylfHOHo6mjuI6pOemhhyc7c7x81GVTo_90Bf6ZRJ5TdJOC-rh2_iDN8zHBSR3W3Ow3EpCP8jAlcn16uVuQx5fu7UrlbA">
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center gap-sm mb-1">
+<a class="font-book-title text-book-title text-on-surface hover:text-primary transition-colors" href="#">Laskar Pelangi</a>
+<span class="font-data text-xs border border-outline-variant/60 rounded px-2 py-0.5 text-on-surface bg-surface-container-low select-all">899.221 HIR l</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mb-xs">
+              Andrea Hirata · 2005 · Bentang Pustaka
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Kisah sepuluh siswa miskin di SD Muhammadiyah Gantong, Belitung, yang bersama-sama memperjuangkan hak belajar di tengah keterbatasan fasilitas dan hegemoni tambang timah PN Timah.
+            </p>
+</div>
+<div class="flex flex-wrap items-center gap-md mt-sm pt-xs">
+<span class="font-data text-xs flex items-center gap-1.5 text-secondary font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span>
+              2 dari 3 tersedia · Rak B-04
+            </span>
+<span class="font-data text-xs text-outline font-normal">hasil semantik</span>
+</div>
+</div>
+<div class="sm:self-center flex-shrink-0 mt-sm sm:mt-0">
+<a class="h-9 px-md bg-surface-container-lowest border border-outline/50 hover:border-on-surface text-on-surface font-label text-label rounded transition-colors inline-flex items-center justify-center font-medium" data-path="book-detail" href="#">
+            Lihat
+          </a>
+</div>
+</article>
+<!-- ROW 2: Sang Pemimpi -->
+<article class="flex flex-col sm:flex-row items-start gap-md py-lg border-b border-outline-variant/40 group">
+<div class="w-16 h-24 flex-shrink-0 rounded bg-surface-container-high border border-outline-variant/50 overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Editorial book cover for Sang Pemimpi by Andrea Hirata. Cinematic photograph of three teenage high school boys standing by a rustic wooden jetty at sunset overlooking the sea. Vintage warm paper palette, minimalist typography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADlMBh213CFCZkE9FlCmjeO1cNIaZcIqsyMhGckxs_bmqSlAwG24QshTV0zmAq90N4LxvnLCTMfSyIWnkfWlKZjEIgKjK7eK8SDmVD0rCYWdsiv4CFWsV9t1tRO3HoxLL4-NIJpvClUrnVFetqnUyWubfoqFeXYi2TWsfGDwqziQw4bRpAJleP8gCDg-HgA7ZN52YdxkgH86MNsjE8Fd8xb6CGzuUxjqzC-VUXI60p3HgVqdRaVKW3qA">
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center gap-sm mb-1">
+<a class="font-book-title text-book-title text-primary underline underline-offset-8 decoration-2 transition-colors" href="#">Sang Pemimpi</a>
+<span class="font-data text-xs border border-outline-variant/60 rounded px-2 py-0.5 text-on-surface bg-surface-container-low select-all">899.221 HIR s</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mb-xs">
+              Andrea Hirata · 2006 · Bentang Pustaka
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Ikal, Arai, dan Jimbron mengarungi masa SMA di Manggar. Mereka bekerja paruh waktu di pelabuhan ikan subuh hari demi membiayai sekolah dan merajut impian melangkah ke Sorbonne, Paris.
+            </p>
+</div>
+<div class="flex flex-wrap items-center gap-md mt-sm pt-xs">
+<span class="font-data text-xs flex items-center gap-1.5 text-secondary font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span>
+              1 dari 2 tersedia · Rak B-04
+            </span>
+</div>
+</div>
+<div class="sm:self-center flex-shrink-0 mt-sm sm:mt-0">
+<a class="h-9 px-md bg-surface-container-lowest border border-outline/50 hover:border-on-surface text-on-surface font-label text-label rounded transition-colors inline-flex items-center justify-center font-medium" data-path="book-detail" href="#">
+            Lihat
+          </a>
+</div>
+</article>
+<!-- ROW 3: Negeri 5 Menara -->
+<article class="flex flex-col sm:flex-row items-start gap-md py-lg border-b border-outline-variant/40 group">
+<div class="w-16 h-24 flex-shrink-0 rounded bg-surface-container-high border border-outline-variant/50 overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Editorial book cover for Negeri 5 Menara by Ahmad Fuadi. Architectural silhouette of pesantren minarets and courtyard against an overcast sky. Classic book design in deep oxblood and aged parchment tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEQClvlHtb1MlNYJyIZLUBG5e3AHo12ZK5-GQRNvdWwILUMg-t2s_yqJXK-2uvJ0MMtHrCv3F_Aud-vFCSW977T5hVYFJpGtY3vsVAz5Ejy1NPloMvSROgtsEqUe8Fy_M9g552Njgx3DrkxY6yS04S6b0apZ1e2Jr2uKICw4zjH0lVDeHhqj0fwJw5hD9N-wgnDQMAfdIRyH9h840kYw3RjGvz2CyDwTxceWsMD0D4VbVRAxactmuKUw">
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center gap-sm mb-1">
+<a class="font-book-title text-book-title text-on-surface hover:text-primary transition-colors" href="#">Negeri 5 Menara</a>
+<span class="font-data text-xs border border-outline-variant/60 rounded px-2 py-0.5 text-on-surface bg-surface-container-low select-all">899.221 FUA n</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mb-xs">
+              Ahmad Fuadi · 2009 · Gramedia Pustaka Utama
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Enam santri dari penjuru nusantara berkumpul di Pondok Madani Ponorogo. Di bawah naungan menara masjid pesantren, mereka mengikat janji persaudaraan lewat mantra pemantik tekad: Man jadda wajada.
+            </p>
+</div>
+<div class="flex flex-wrap items-center gap-md mt-sm pt-xs">
+<span class="font-data text-xs flex items-center gap-1.5 text-secondary font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span>
+              3 dari 4 tersedia · Rak C-12
+            </span>
+<span class="font-data text-xs text-outline font-normal">hasil semantik</span>
+</div>
+</div>
+<div class="sm:self-center flex-shrink-0 mt-sm sm:mt-0">
+<a class="h-9 px-md bg-surface-container-lowest border border-outline/50 hover:border-on-surface text-on-surface font-label text-label rounded transition-colors inline-flex items-center justify-center font-medium" data-path="book-detail" href="#">
+            Lihat
+          </a>
+</div>
+</article>
+<!-- ROW 4: Ranah 3 Warna -->
+<article class="flex flex-col sm:flex-row items-start gap-md py-lg border-b border-outline-variant/40 group">
+<div class="w-16 h-24 flex-shrink-0 rounded bg-surface-container-high border border-outline-variant/50 overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Editorial book cover photograph for Ranah 3 Warna by Ahmad Fuadi. Vintage traveler satchel resting on an old wooden study desk beside lecture notebooks. Warm literary tones, moody studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1sP4IRZLH7FHAZFaOaqHeCQNMhQ_76gXl1r698t1qwKgl0WqeTdgXLiukrIMMgO3han8i_DPr0UEHhqtDtF1VI8J_L9nyDBqw-UcaRxTtME_TSxAwQuIpAyR1zfmcIeCEq9M45mHyKZhkOiPhRXunm3hQDGBED08-a8QsufClwWrVDvMTZFEe-lY6AN5HFDlu7a9fG_DESTCQofvdMzRyKyxaBzeNxZyAHwtEF9roOau05InF9IfPTg">
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center gap-sm mb-1">
+<a class="font-book-title text-book-title text-on-surface hover:text-primary transition-colors" href="#">Ranah 3 Warna</a>
+<span class="font-data text-xs border border-outline-variant/60 rounded px-2 py-0.5 text-on-surface bg-surface-container-low select-all">899.221 FUA r</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mb-xs">
+              Ahmad Fuadi · 2011 · Gramedia Pustaka Utama
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Kelanjutan perjalanan Alif Fikri menembus bangku perguruan tinggi negeri di Bandung bersama sahabat masa sekolahnya, diuji ketabahan Man Shabara Zhafira tatkala mimpi berbenturan dengan realita ekonomi.
+            </p>
+</div>
+<div class="flex flex-wrap items-center gap-md mt-sm pt-xs">
+<span class="font-data text-xs flex items-center gap-1.5 text-on-surface-variant font-medium">
+<span class="w-2 h-2 rounded-full bg-outline inline-block"></span>
+              Semua dipinjam · 2 antrean
+            </span>
+</div>
+</div>
+<div class="sm:self-center flex-shrink-0 mt-sm sm:mt-0">
+<button class="h-9 px-md bg-surface-container border border-outline/50 hover:border-primary text-primary font-label text-label rounded transition-colors inline-flex items-center justify-center font-medium" type="button">
+            Reservasi
+          </button>
+</div>
+</article>
+<!-- ROW 5: Dilan 1990 (Typographic Cover) -->
+<article class="flex flex-col sm:flex-row items-start gap-md py-lg border-b border-outline-variant/40 group">
+<div class="w-16 h-24 flex-shrink-0 rounded bg-surface-dim border border-outline-variant/70 p-2 flex flex-col justify-between text-left select-none shadow-sm">
+<div class="font-h3 text-[11px] leading-tight text-on-surface tracking-wider uppercase font-bold">DILAN 1990</div>
+<div>
+<div class="font-body-sm text-[8px] text-on-surface-variant leading-tight">Pidi Baiq</div>
+<div class="font-data text-[7px] text-outline mt-0.5">2014</div>
+</div>
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center gap-sm mb-1">
+<a class="font-book-title text-book-title text-on-surface hover:text-primary transition-colors" href="#">Dilan: Dia adalah Dilanku Tahun 1990</a>
+<span class="font-data text-xs border border-outline-variant/60 rounded px-2 py-0.5 text-on-surface bg-surface-container-low select-all">899.221 BAI d</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mb-xs">
+              Pidi Baiq · 2014 · Pastel Books (Mizan)
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Nuansa persahabatan anak-anak SMA di Bandung era 1990. Pertemuan Milea dengan Dilan, anggota geng motor yang cerdas berpuisi dan menjunjung tinggi loyalitas kawan satu tongkrongan di sekolah.
+            </p>
+</div>
+<div class="flex flex-wrap items-center gap-md mt-sm pt-xs">
+<span class="font-data text-xs flex items-center gap-1.5 text-secondary font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span>
+              1 dari 5 tersedia · Rak B-08
+            </span>
+<span class="font-data text-xs text-outline font-normal">hasil semantik</span>
+</div>
+</div>
+<div class="sm:self-center flex-shrink-0 mt-sm sm:mt-0">
+<a class="h-9 px-md bg-surface-container-lowest border border-outline/50 hover:border-on-surface text-on-surface font-label text-label rounded transition-colors inline-flex items-center justify-center font-medium" data-path="book-detail" href="#">
+            Lihat
+          </a>
+</div>
+</article>
+<!-- ROW 6: 5 cm -->
+<article class="flex flex-col sm:flex-row items-start gap-md py-lg border-b border-outline-variant/40 group">
+<div class="w-16 h-24 flex-shrink-0 rounded bg-surface-container-high border border-outline-variant/50 overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Editorial book cover photograph for 5 cm novel by Donny Dhirgantoro. Misty silhouettes of pine trees on Mount Semeru foothills with gentle amber sunlight cutting through the morning haze. Minimalist typography in warm charcoal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_iRWuGYv1wclLhvib5raA_B6mADfKYdZN_SQQ0FbGTU9_Nz6sABJmqUg3UtMMO0qzk1q__R78LSi8zt7ZR7kUHKjZ5Yr3Ocg2YXJiLwzLcIlhlbX2c5O293HkoktNWU4AB6JK7tomA6beONv6-QApPj5HRvFeOGa-zFBUK_CbGqmdpBWqx0vmPcCyzjJXr0vjEDw_mBaQGVBgSwwHXfxWqB_SdG1Iypc-SicGRcK7KVjw3VyfUsCNwA">
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center gap-sm mb-1">
+<a class="font-book-title text-book-title text-on-surface hover:text-primary transition-colors" href="#">5 cm</a>
+<span class="font-data text-xs border border-outline-variant/60 rounded px-2 py-0.5 text-on-surface bg-surface-container-low select-all">899.221 DHI l</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mb-xs">
+              Donny Dhirgantoro · 2005 · Grasindo
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Lima sahabat sejak masa sekolah yang memutuskan tidak bertemu selama tiga bulan sebelum bereuni dalam ekspedisi pendakian ke puncak tertinggi Jawa, Mahameru, guna menguji batas diri dan persaudaraan.
+            </p>
+</div>
+<div class="flex flex-wrap items-center gap-md mt-sm pt-xs">
+<span class="font-data text-xs flex items-center gap-1.5 text-secondary font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span>
+              2 dari 2 tersedia · Rak B-02
+            </span>
+</div>
+</div>
+<div class="sm:self-center flex-shrink-0 mt-sm sm:mt-0">
+<a class="h-9 px-md bg-surface-container-lowest border border-outline/50 hover:border-on-surface text-on-surface font-label text-label rounded transition-colors inline-flex items-center justify-center font-medium" data-path="book-detail" href="#">
+            Lihat
+          </a>
+</div>
+</article>
+<!-- ROW 7: Eliana -->
+<article class="flex flex-col sm:flex-row items-start gap-md py-lg border-b border-outline-variant/40 group">
+<div class="w-16 h-24 flex-shrink-0 rounded bg-surface-container-high border border-outline-variant/50 overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Editorial book cover photograph for Eliana: Serial Anak-Anak Mamak by Tere Liye. A solitary lush valley and river bank in rural Sumatra with a girl holding a school book bag. Naturalistic tones, editorial warm matte." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm5KoRcqG_Z8bcfGAC1zYsR19BQHJ5y76k8rSKeJ4GH6iJkNQCDszlcGJs4qrbT_vQyuq2Vyn4oh9uDskUqC5IjaTr9dOsJU_cQ_DADh59INpkXy0ieetAWD3pQn5XwVpbHNQr2SFD6MQEXJwu0Xuuqq9JEOOlE9P3y9_DMGT0_1ItPjpE7Ea_ueX2shXvdNnCYp5cllH_rA6uyBfLFO1nJpw7-chQJCdukqGaLoMZb3Z-6w_mK021_g">
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center gap-sm mb-1">
+<a class="font-book-title text-book-title text-on-surface hover:text-primary transition-colors" href="#">Eliana: Serial Anak-Anak Mamak</a>
+<span class="font-data text-xs border border-outline-variant/60 rounded px-2 py-0.5 text-on-surface bg-surface-container-low select-all">899.221 LIY e</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mb-xs">
+              Tere Liye · 2011 · Republika Penerbit
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Eliana si pemberani memimpin kawanan empat sahabatnya di pedalaman Sumatera. Menghadapi ancaman perusakan hutan adat oleh tambang liar seraya menjaga kehormatan sekolah kecil mereka.
+            </p>
+</div>
+<div class="flex flex-wrap items-center gap-md mt-sm pt-xs">
+<span class="font-data text-xs flex items-center gap-1.5 text-secondary font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span>
+              1 dari 3 tersedia · Rak B-15
+            </span>
+</div>
+</div>
+<div class="sm:self-center flex-shrink-0 mt-sm sm:mt-0">
+<a class="h-9 px-md bg-surface-container-lowest border border-outline/50 hover:border-on-surface text-on-surface font-label text-label rounded transition-colors inline-flex items-center justify-center font-medium" data-path="book-detail" href="#">
+            Lihat
+          </a>
+</div>
+</article>
+<!-- ROW 8: Garis Waktu -->
+<article class="flex flex-col sm:flex-row items-start gap-md py-lg border-b border-outline-variant/40 group">
+<div class="w-16 h-24 flex-shrink-0 rounded bg-surface-container-high border border-outline-variant/50 overflow-hidden relative shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Editorial book cover photograph for Garis Waktu by Fiersa Besari. Minimalist composition featuring an empty bench in a high school courtyard during a soft afternoon golden hour. Clean typographic frame, warm monochrome." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMXf1yDPMRojFwM8Nxa6fBjVgoz_9-k3EJ1F_GiyGK6MVZH1WBSPT_7onVYzogu8-YRbFuMzCdEgTP_gSIB8QHUoiiloVqX6pmgt4eV8BWjwbp65Nb6FYHRhGWjajK3wdHLthMZRypULqer2tFUrRaZCNVAPheJhRELglOS-EnYS7ZL8Uf_giTHLmWWsqIxmeWQZLjcPKHU6EHm5N23nXE1vTwg4M-gYLgsNHufwTY4zOPj4mu-ipnVg">
+</div>
+<div class="flex-1 min-w-0 flex flex-col justify-between">
+<div>
+<div class="flex flex-wrap items-center gap-sm mb-1">
+<a class="font-book-title text-book-title text-on-surface hover:text-primary transition-colors" href="#">Garis Waktu: Sebuah Perjalanan Menghapus Luka</a>
+<span class="font-data text-xs border border-outline-variant/60 rounded px-2 py-0.5 text-on-surface bg-surface-container-low select-all">899.221 BES g</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mb-xs">
+              Fiersa Besari · 2016 · Media Kita
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+              Kumpulan prosa liris dan fragmen narasi tentang persahabatan masa muda, cinta yang tak terucap di lorong kelas, serta pendewasaan diri tatkala jarak memisahkan langkah para sahabat.
+            </p>
+</div>
+<div class="flex flex-wrap items-center gap-md mt-sm pt-xs">
+<span class="font-data text-xs flex items-center gap-1.5 text-on-surface-variant font-medium">
+<span class="w-2 h-2 rounded-full bg-outline inline-block"></span>
+              Semua dipinjam · 1 antrean
+            </span>
+<span class="font-data text-xs text-outline font-normal">hasil semantik</span>
+</div>
+</div>
+<div class="sm:self-center flex-shrink-0 mt-sm sm:mt-0">
+<button class="h-9 px-md bg-surface-container border border-outline/50 hover:border-primary text-primary font-label text-label rounded transition-colors inline-flex items-center justify-center font-medium" type="button">
+            Reservasi
+          </button>
+</div>
+</article>
+<!-- PAGINATION -->
+<nav aria-label="Navigasi halaman hasil" class="mt-xl pt-md border-t border-outline-variant/40 flex flex-col sm:flex-row items-center justify-between gap-md">
+<span class="font-data text-data text-on-surface-variant order-2 sm:order-1">
+          Halaman <span class="text-on-surface font-medium">1</span> dari <span class="text-on-surface font-medium">5</span>
+</span>
+<div class="flex items-center gap-xs order-1 sm:order-2">
+<button class="h-9 px-sm text-on-surface-variant/40 font-label text-label cursor-not-allowed flex items-center gap-1" disabled="" type="button">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+            Sebelumnya
+          </button>
+<div class="flex items-center gap-1 px-sm">
+<span class="w-8 h-8 flex items-center justify-center font-data text-label font-bold text-on-surface border-b-2 border-on-surface">1</span>
+<a class="w-8 h-8 flex items-center justify-center font-data text-label text-on-surface-variant hover:text-on-surface transition-colors" href="#">2</a>
+<a class="w-8 h-8 flex items-center justify-center font-data text-label text-on-surface-variant hover:text-on-surface transition-colors" href="#">3</a>
+<span class="w-6 h-8 flex items-center justify-center font-data text-label text-on-surface-variant">...</span>
+<a class="w-8 h-8 flex items-center justify-center font-data text-label text-on-surface-variant hover:text-on-surface transition-colors" href="#">5</a>
+</div>
+<a class="h-9 px-sm text-on-surface hover:text-primary font-label text-label flex items-center gap-1 transition-colors" href="#">
+            Berikutnya
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</nav>
+</section>
+</main>
+</div></main><footer class="w-full bg-surface-container-low border-t-2 border-on-surface mt-2xl"><div class="max-w-[1200px] mx-auto px-lg py-xl flex flex-col md:flex-row md:items-start md:justify-between gap-xl"><div><div class="font-h3 text-h3 uppercase text-on-surface tracking-normal mb-xs">PUSTAKA</div><div class="font-body-sm text-body-sm text-on-surface-variant">Perpustakaan SMA Nusantara</div><p class="font-data text-data text-on-surface-variant mt-sm">Jl. Pendidikan No. 1, Indonesia</p></div><div class="flex flex-col gap-sm md:items-end"><nav class="flex flex-wrap items-center gap-md" data-active-classes="text-primary font-semibold"><a aria-current="page" class="transition-colors text-primary font-semibold" data-path="search-results" href="#">Katalog</a><span class="text-outline-variant">·</span><a class="font-label text-label text-on-surface-variant hover:text-on-surface transition-colors" data-path="member-login" href="#">Masuk anggota</a><span class="text-outline-variant">·</span><a class="font-label text-label text-on-surface-variant hover:text-on-surface transition-colors" data-path="privacy-policy" href="#">Kebijakan privasi</a></nav><div class="font-data text-data text-on-surface-variant mt-md">© 2026 Perpustakaan SMA Nusantara</div></div></div></footer>
+
+</body></html>

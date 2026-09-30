@@ -1,0 +1,25 @@
+# Dependencies & build (juga ada .gitignore per app)
+node_modules/
+dist/
+.next/
+*.tsbuildinfo
+coverage/
+
+# Env & rahasia
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Data lokal
+backend/uploads/
+backend/src/generated/
+docker/backups/
+
+# Tooling lokal
+.playwright-mcp/
+graphify-out/
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json

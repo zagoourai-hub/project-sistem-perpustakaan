@@ -1,0 +1,18 @@
+{
+  "name": "pustaka",
+  "private": true,
+  "description": "Sistem perpustakaan Pustaka. Tiap app punya lockfile sendiri; script ini hanya mendelegasikan.",
+  "packageManager": "pnpm@12.5.1",
+  "scripts": {
+    "infra": "docker compose -f docker/docker-compose.yml up -d",
+    "install:all": "pnpm -C backend install && pnpm -C frontend install",
+    "dev:backend": "pnpm -C backend start:dev",
+    "dev:frontend": "pnpm -C frontend dev",
+    "build": "pnpm -C backend build && pnpm -C frontend build",
+    "lint": "pnpm -C backend lint && pnpm -C frontend exec tsc --noEmit -p .",
+    "test": "pnpm -C backend test",
+    "test:e2e": "pnpm -C backend test:e2e",
+    "db:migrate": "pnpm -C backend exec prisma migrate deploy",
+    "db:seed": "pnpm -C backend exec prisma db seed"
+  }
+}

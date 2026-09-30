@@ -1,0 +1,400 @@
+<!DOCTYPE html><html lang="id" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="web_dashboard" name="shell-type">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+    }
+    ::-webkit-scrollbar { display: none; }
+    .tnum { font-variant-numeric: tabular-nums; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#F5F1E8",
+            "background": "#F5F1E8",
+            "on-surface": "#1C1A16",
+            "on-background": "#1C1A16",
+            "surface-sidebar": "#EDE7DA",
+            "surface-container-high": "#EDE7DA",
+            "surface-container-low": "#FAF7F2",
+            "outline-variant": "#D9D1C1",
+            "outline": "#89726F",
+            "ink-muted": "#5E584D",
+            "primary": "#7A2420",
+            "primary-container": "#5B0D0D",
+            "on-primary": "#FFFFFF",
+            "ochre": "#A66A12",
+            "ochre-border": "#C48226"
+          },
+          fontFamily: {
+            "h1": ["Anton", "sans-serif"],
+            "h2": ["Anton", "sans-serif"],
+            "body-md": ["Work Sans", "sans-serif"],
+            "body-sm": ["Work Sans", "sans-serif"],
+            "label": ["Work Sans", "sans-serif"],
+            "data": ["IBM Plex Mono", "monospace"],
+            "data-lg": ["IBM Plex Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#F5F1E8] font-body-md text-[#1C1A16] antialiased min-h-screen selection:bg-[#7A2420] selection:text-white">
+<!-- SIDEBAR (Sunken Paper #EDE7DA, 232px) -->
+<aside class="fixed left-0 top-0 bottom-0 w-[232px] bg-[#EDE7DA] border-r border-[#D9D1C1] z-50 flex flex-col justify-between">
+<div class="flex flex-col">
+<div class="h-16 px-5 border-b border-[#D9D1C1] flex flex-col justify-center">
+<div class="flex items-baseline justify-between">
+<span class="font-h1 text-[26px] tracking-normal uppercase text-[#1C1A16] leading-none">Pustaka</span>
+<span class="font-data text-[11px] tracking-wider uppercase text-[#5E584D] font-medium">Konsol Staf</span>
+</div>
+</div>
+<nav class="flex flex-col py-2">
+<!-- Dasbor: Transparent background with crisp 2px oxblood border on the left edge, ink text -->
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="dasbor" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F]">dashboard</span>
+<span class="text-sm">Dasbor</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors text-[#1C1A16] font-semibold border-l-2 border-[#7A2420] bg-transparent" data-path="sirkulasi" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 group-hover:text-[#1C1A16] text-[#7A2420]">sync_alt</span>
+<span class="">Sirkulasi</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="katalog" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">menu_book</span>
+<span class="">Katalog</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="anggota" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">badge</span>
+<span class="">Anggota</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="reservasi" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">bookmark_border</span>
+<span class="">Reservasi</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="denda" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">payments</span>
+<span class="">Denda</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="laporan" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">bar_chart</span>
+<span class="">Laporan</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="pengaturan" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">settings</span>
+<span class="">Pengaturan</span>
+</a>
+</nav>
+</div>
+<div class="p-4 border-t border-[#D9D1C1] bg-[#EDE7DA]">
+<div class="flex items-center justify-between">
+<div class="flex flex-col min-w-0 mr-2">
+<span class="text-sm font-semibold text-[#1C1A16] truncate">Rina Wulandari</span>
+<span class="font-data text-[11px] text-[#5E584D] truncate">Pustakawan</span>
+</div>
+<a class="p-1 rounded text-[#5E584D] hover:text-[#7A2420] transition-colors flex items-center justify-center" data-path="logout" href="#" title="Keluar Konsol">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- MAIN WRAPPER -->
+<div class="pl-[232px] min-h-screen flex flex-col bg-[#F5F1E8]">
+<!-- TOP BAR -->
+<header class="fixed top-0 left-[232px] right-0 h-16 bg-[#F5F1E8] border-b border-[#D9D1C1] z-40 px-8 flex items-center justify-between">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#89726F] text-[18px]">search</span>
+<input class="w-full h-9 pl-9 pr-10 bg-[#FAF7F2] border border-[#D9D1C1] rounded-[2px] font-data text-xs text-[#1C1A16] placeholder:text-[#89726F] focus:outline-none focus:border-[#1C1A16] focus:ring-0 transition-all" placeholder="Cari judul, barcode, atau anggota…" type="text">
+<span class="absolute right-3 top-1/2 -translate-y-1/2 font-data text-[10px] px-1 py-0.2 border border-[#D9D1C1] rounded-[2px] bg-[#F5F1E8] text-[#5E584D]">/</span>
+</div>
+</div>
+<div class="flex items-center gap-6 ml-6">
+<div class="font-data text-xs text-[#1C1A16] border-r border-[#D9D1C1] pr-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-[#89726F] text-[18px]">calendar_today</span>
+<span class="">Senin, 28 Sep 2026</span>
+</div>
+<a class="relative p-1 text-[#5E584D] hover:text-[#1C1A16] transition-colors flex items-center justify-center" data-path="notifikasi" href="#">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-0 right-0 w-4 h-4 bg-[#7A2420] text-white font-data text-[10px] font-semibold flex items-center justify-center rounded-full leading-none">3</span>
+</a>
+<div class="w-8 h-8 rounded-full bg-[#7A2420] flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[18px]">person</span>
+</div>
+</div>
+</header>
+<!-- CONTENT BODY (pt-16 for header + 32px vertical gap) -->
+<main class="relative pt-16 w-full flex-1 bg-[#F5F1E8] px-8 pb-12"><div class="flex flex-col w-full">
+<!-- Active Sidebar Highlighter script targeting shell navigation item "Sirkulasi" -->
+<script>
+    (function() {
+      const navLinks = document.querySelectorAll('aside nav a[data-path]');
+      navLinks.forEach(link => {
+        if (link.getAttribute('data-path') === 'sirkulasi') {
+          link.classList.remove('text-[#5E584D]');
+          link.classList.add('text-[#1C1A16]', 'font-semibold', 'border-l-2', 'border-[#7A2420]', 'bg-transparent');
+          const icon = link.querySelector('.material-symbols-outlined');
+          if (icon) {
+            icon.classList.remove('text-[#89726F]');
+            icon.classList.add('text-[#7A2420]');
+          }
+        } else if (link.getAttribute('data-path') === 'dasbor') {
+          link.classList.remove('border-l-2', 'border-[#7A2420]', 'text-[#1C1A16]');
+          link.classList.add('text-[#5E584D]');
+          const icon = link.querySelector('.material-symbols-outlined');
+          if (icon) {
+            icon.classList.remove('text-[#7A2420]');
+            icon.classList.add('text-[#89726F]');
+          }
+        }
+      });
+    })();
+  </script>
+<!-- PAGE HEADER -->
+<div class="flex flex-col w-full pb-4 pt-8">
+<div class="flex items-end justify-between w-full">
+<div class="flex flex-col">
+<span class="font-data text-[11px] tracking-[0.18em] uppercase text-[#5E584D] font-medium leading-none mb-1.5">Meja Layanan</span>
+<h1 class="font-h1 text-[40px] uppercase text-[#1C1A16] leading-none tracking-tight">Sirkulasi</h1>
+</div>
+<!-- Segmented Control Mode Switcher -->
+<div class="flex items-center gap-1 p-1 bg-[#EDE7DA] rounded-[4px] border border-[#D9D1C1]">
+<button class="flex items-center gap-2 px-4 py-2 rounded-[2px] bg-[#1C1A16] text-[#F5F1E8] font-label text-xs font-semibold tracking-wide transition-all shadow-none" type="button">
+<span class="">Pinjam</span>
+<span class="font-data text-[10px] uppercase px-1.5 py-0.5 rounded-[2px] bg-[#33302C] text-[#EDE7DA] font-normal leading-none">F2</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-[2px] bg-transparent text-[#5E584D] hover:text-[#1C1A16] font-label text-xs font-medium tracking-wide transition-all" type="button">
+<span class="">Kembali</span>
+<span class="font-data text-[10px] uppercase px-1.5 py-0.5 rounded-[2px] bg-[#D9D1C1]/60 text-[#5E584D] font-normal leading-none">F3</span>
+</button>
+</div>
+</div>
+<!-- 2px Solid Ink Rule directly below header -->
+<div class="w-full h-[2px] bg-[#1C1A16] mt-4"></div>
+</div>
+<!-- SCAN BAR (Full Width) -->
+<div class="w-full mt-6 mb-6">
+<div class="relative w-full flex items-center">
+<div class="absolute left-4 flex items-center pointer-events-none text-[#5E584D]">
+<span class="material-symbols-outlined text-[24px]">barcode_scanner</span>
+</div>
+<input autofocus="" class="w-full h-14 pl-12 pr-14 bg-[#FAF7F2] border border-[#1C1A16] rounded-[4px] font-data text-base text-[#1C1A16] placeholder:text-[#89726F] outline-none ring-2 ring-[#1C1A16] ring-offset-2 ring-offset-[#F5F1E8] transition-all" id="circulation-scanner-input" placeholder="Scan kartu anggota atau barcode buku…" type="text">
+<button class="absolute right-3.5 w-8 h-8 flex items-center justify-center rounded-[2px] text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#EDE7DA] transition-colors" title="Buka Kamera Barcode" type="button">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</button>
+</div>
+<!-- Scanner Hint Line -->
+<div class="flex items-center justify-between mt-2 px-1">
+<div class="flex items-center gap-2 font-data text-xs text-[#5E584D]">
+<span class="inline-block w-2 h-2 rounded-full bg-[#3F5A3C]"></span>
+<span class="">USB scanner siap · Enter untuk konfirmasi · Esc untuk batal</span>
+</div>
+<div class="font-data text-[11px] text-[#89726F]">
+        Mode: <span class="text-[#1C1A16] font-medium">Auto-deteksi ISBN / NIS</span>
+</div>
+</div>
+</div>
+<!-- MAIN AREA (12 Columns: 5 Cols Member Panel / 7 Cols Scan Queue) -->
+<div class="grid grid-cols-12 gap-0 border-t border-[#D9D1C1] pt-6">
+<!-- LEFT COLUMN (5 Cols: Member Panel) -->
+<div class="col-span-5 pr-8 border-r border-[#D9D1C1] flex flex-col">
+<!-- Member Info Box -->
+<div class="flex items-start gap-4 pb-5 border-b border-[#D9D1C1]">
+<!-- Avatar Initials Placeholder -->
+<div class="w-16 h-16 rounded-[4px] bg-[#EDE7DA] border border-[#D9D1C1] flex items-center justify-center shrink-0">
+<span class="font-label text-xl font-bold tracking-tight text-[#1C1A16]">NP</span>
+</div>
+<!-- Member Details -->
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-baseline justify-between gap-2">
+<h2 class="font-label text-xl font-bold text-[#1C1A16] tracking-tight leading-tight truncate">Nadia Putri</h2>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium font-data text-[#3F5A3C] bg-[#C9E8C1]/50 border border-[#4A6546]/30">Aktif</span>
+</div>
+<span class="text-xs font-normal text-[#5E584D] mt-0.5">XI IPA 2 · Siswa</span>
+<div class="flex items-center gap-3 mt-2">
+<span class="font-data text-xs text-[#1C1A16] bg-[#EDE7DA] px-1.5 py-0.5 rounded-[2px] border border-[#D9D1C1]">AGT-2024-0081</span>
+<span class="font-data text-[11px] text-[#5E584D]">Berlaku s/d 30 Jun 2027</span>
+</div>
+</div>
+</div>
+<!-- Quota Metrics (3 Columns with vertical hairlines) -->
+<div class="grid grid-cols-3 border-b border-[#D9D1C1]">
+<div class="py-4 pr-3 border-r border-[#D9D1C1] flex flex-col">
+<span class="font-data text-[26px] font-medium text-[#1C1A16] leading-none tnum">2<span class="text-[18px] text-[#89726F]">/3</span></span>
+<span class="font-label text-[11px] uppercase tracking-wider text-[#5E584D] mt-1.5">Pinjaman aktif</span>
+</div>
+<div class="py-4 px-3 border-r border-[#D9D1C1] flex flex-col">
+<span class="font-data text-[26px] font-medium text-[#1C1A16] leading-none tnum">0</span>
+<span class="font-label text-[11px] uppercase tracking-wider text-[#5E584D] mt-1.5">Reservasi siap</span>
+</div>
+<div class="py-4 pl-3 flex flex-col">
+<span class="font-data text-[26px] font-medium text-[#7A2420] leading-none tnum">Rp8.000</span>
+<span class="font-label text-[11px] uppercase tracking-wider text-[#5E584D] mt-1.5">Denda</span>
+</div>
+</div>
+<!-- Warning Strip (Denda Not Overdue Limit) -->
+<div class="mt-4 p-3 bg-[#FAF7F2] rounded-[2px] border-l-[3px] border-[#A66A12]"><p class="font-body-sm text-[13px] text-[#1C1A16] leading-snug">Denda <span class="font-data font-semibold text-[#7A2420]">Rp8.000</span> belum lunas — masih di bawah batas blokir <span class="font-data">Rp20.000</span>.</p></div>
+<!-- Section: Sedang Dipinjam -->
+<div class="mt-6 flex flex-col flex-1">
+<div class="flex items-center justify-between pb-2 border-b border-[#D9D1C1]">
+<span class="font-data text-[11px] font-semibold tracking-wider uppercase text-[#5E584D]">Sedang Dipinjam (2)</span>
+<span class="font-data text-[11px] text-[#89726F]">Maks 3 buku</span>
+</div>
+<div class="divide-y divide-[#D9D1C1]">
+<!-- Active Loan 1 -->
+<div class="py-3 flex flex-col gap-1.5">
+<div class="flex items-start justify-between gap-2">
+<span class="font-book-title text-sm font-semibold text-[#1C1A16] leading-snug">Bumi Manusia</span>
+<span class="font-data text-[11px] px-1.5 py-0.5 rounded-[2px] border border-[#D9D1C1] bg-[#EDE7DA] text-[#1C1A16] shrink-0" style="white-space: nowrap;">899.221 PRA b</span>
+</div>
+<div class="flex items-center justify-between text-xs text-[#5E584D]">
+<span class="">Pramoedya Ananta Toer</span>
+<span class="font-data text-[11px] text-[#1C1A16]">Jatuh tempo 1 Okt 2026</span>
+</div>
+</div>
+<!-- Active Loan 2 (Overdue) -->
+<div class="py-3 flex flex-col gap-1.5">
+<div class="flex items-start justify-between gap-2">
+<span class="font-book-title text-sm font-semibold text-[#1C1A16] leading-snug">Laskar Pelangi</span>
+<span class="font-data text-[11px] px-1.5 py-0.5 rounded-[2px] border border-[#D9D1C1] bg-[#EDE7DA] text-[#1C1A16] shrink-0" style="white-space: nowrap;">899.221 HIR l</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-[#5E584D]">Andrea Hirata</span>
+<div class="flex items-center gap-2">
+<span class="font-data text-[11px] text-[#7A2420]">Jatuh tempo 20 Sep 2026</span>
+<span class="inline-flex items-center px-1.5 py-0.2 rounded-full font-data text-[10px] font-medium bg-[#7A2420] text-white">Terlambat 8 hari</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Ghost Button to Full Profile -->
+<div class="pt-4 mt-auto">
+<a class="w-full h-10 flex items-center justify-center gap-2 rounded-[4px] border border-[#D9D1C1] bg-transparent text-[#1C1A16] hover:bg-[#EDE7DA] font-label text-xs font-semibold tracking-wide transition-colors" href="#">
+<span class="">Lihat profil lengkap</span>
+<span class="font-data">→</span>
+</a>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (7 Cols: Scan Queue & Confirmation) -->
+<div class="col-span-7 pl-8 flex flex-col justify-between">
+<!-- Section Title -->
+<div class="flex items-baseline justify-between pb-3 border-b border-[#1C1A16]">
+<div class="flex flex-col">
+<span class="font-data text-[10px] tracking-[0.16em] uppercase text-[#7A2420] font-semibold mb-0.5">Akan Dipinjam</span>
+<h2 class="font-h1 text-2xl uppercase tracking-tight text-[#1C1A16] leading-none">Antrean Scan (2)</h2>
+</div>
+<span class="font-data text-xs text-[#5E584D]">Peminjaman Baru · Periode 14 Hari</span>
+</div>
+<!-- Scanned Items List -->
+<div class="divide-y divide-[#D9D1C1] flex flex-col">
+<!-- Item 1: Valid Scanned Book -->
+<div class="py-4 flex items-center justify-between gap-4 group">
+<div class="flex items-center gap-3.5 min-w-0">
+<!-- Typographic Book Thumbnail 2:3 aspect ratio -->
+<div class="w-[44px] h-[66px] bg-[#EDE7DA] border border-[#D9D1C1] rounded-[2px] p-1.5 flex flex-col justify-between shrink-0 shadow-none">
+<span class="font-data text-[8px] uppercase tracking-wider text-[#5E584D] block truncate leading-none">Sastra</span>
+<span class="font-h2 text-[10px] uppercase text-[#1C1A16] leading-tight line-clamp-2">Negeri 5 Menara</span>
+<span class="font-data text-[7px] text-[#7A2420] block leading-none">A. Fuadi</span>
+</div>
+<!-- Metadata -->
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-book-title text-[15px] font-semibold text-[#1C1A16] truncate">Negeri 5 Menara</span>
+<span class="font-data text-[11px] px-1.5 py-0.5 rounded-[2px] border border-[#D9D1C1] bg-[#FAF7F2] text-[#1C1A16]" style="white-space: nowrap; flex-shrink: 0;">899.221 FUA n</span>
+</div>
+<span class="text-xs text-[#5E584D] mt-0.5">Ahmad Fuadi · Gramedia Pustaka Utama (2009)</span>
+<span class="font-data text-[11px] text-[#89726F] mt-1 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">qr_code_2</span>
+<span class="">PST-2026-000142</span>
+</span>
+</div>
+</div>
+<!-- Actions / Status on Right -->
+<div class="flex items-center gap-4 shrink-0">
+<div class="flex flex-col items-end">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-data text-[11px] font-medium text-[#3F5A3C] bg-[#C9E8C1]/50 border border-[#4A6546]/30">Siap dipinjam</span>
+<span class="font-data text-xs text-[#1C1A16] mt-1">12 Okt 2026</span>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-[2px] text-[#89726F] hover:text-[#7A2420] hover:bg-[#EDE7DA] transition-colors" title="Hapus dari antrean" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Item 2: Valid Scanned Book -->
+<div class="py-4 flex items-center justify-between gap-4 group">
+<div class="flex items-center gap-3.5 min-w-0">
+<!-- Typographic Book Thumbnail 2:3 aspect ratio -->
+<div class="w-[44px] h-[66px] bg-[#EDE7DA] border border-[#D9D1C1] rounded-[2px] p-1.5 flex flex-col justify-between shrink-0 shadow-none">
+<span class="font-data text-[8px] uppercase tracking-wider text-[#5E584D] block truncate leading-none">Filsafat</span>
+<span class="font-h2 text-[10px] uppercase text-[#1C1A16] leading-tight line-clamp-2">Filosofi Teras</span>
+<span class="font-data text-[7px] text-[#7A2420] block leading-none">H. Manampiring</span>
+</div>
+<!-- Metadata -->
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-book-title text-[15px] font-semibold text-[#1C1A16] truncate">Filosofi Teras</span>
+<span class="font-data text-[11px] px-1.5 py-0.5 rounded-[2px] border border-[#D9D1C1] bg-[#FAF7F2] text-[#1C1A16]" style="white-space: nowrap; flex-shrink: 0;">158.1 MAN f</span>
+</div>
+<span class="text-xs text-[#5E584D] mt-0.5">Henry Manampiring · Penerbit Buku Kompas (2018)</span>
+<span class="font-data text-[11px] text-[#89726F] mt-1 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px]">qr_code_2</span>
+<span class="">PST-2026-000412</span>
+</span>
+</div>
+</div>
+<!-- Actions / Status on Right -->
+<div class="flex items-center gap-4 shrink-0">
+<div class="flex flex-col items-end">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-data text-[11px] font-medium text-[#3F5A3C] bg-[#C9E8C1]/50 border border-[#4A6546]/30">Siap dipinjam</span>
+<span class="font-data text-xs text-[#1C1A16] mt-1">12 Okt 2026</span>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-[2px] text-[#89726F] hover:text-[#7A2420] hover:bg-[#EDE7DA] transition-colors" title="Hapus dari antrean" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Item 3: Error Scanned Row (Rejected) -->
+<div class="py-3 px-3.5 -mx-3 my-1 bg-[#FAF7F2] border-l-[3px] border-[#7A2420] border-y border-r border-[#D9D1C1] flex items-center justify-between gap-4"><div class="flex items-center gap-3.5 min-w-0 flex-1"><div class="w-[44px] h-[66px] bg-[#EDE7DA] border border-[#D9D1C1] rounded-[2px] p-1.5 flex flex-col justify-between shrink-0 opacity-70"><span class="font-data text-[8px] uppercase tracking-wider text-[#5E584D] block truncate leading-none">Fiksi</span><span class="font-h2 text-[10px] uppercase text-[#1C1A16] leading-tight line-clamp-2">Cantik Itu Luka</span><span class="font-data text-[7px] text-[#7A2420] block leading-none">E. Kurniawan</span></div><div class="flex flex-col min-w-0 flex-1"><div class="flex items-center gap-2"><span class="font-book-title text-[15px] font-semibold text-[#1C1A16] line-through opacity-70" style="white-space: nowrap;">Cantik Itu Luka</span><span class="font-data text-[11px] px-1.5 py-0.5 rounded-[2px] border border-[#D9D1C1] bg-[#EDE7DA] text-[#5E584D] shrink-0" style="white-space: nowrap;">899.221 KUR c</span></div><span class="text-xs text-[#5E584D] mt-0.5">Eka Kurniawan · Penerbit Gramedia</span><div class="flex items-center gap-1.5 text-[#7A2420] mt-1"><span class="material-symbols-outlined text-[16px] shrink-0">error</span><span class="font-label text-xs font-semibold text-[#7A2420]">Ditolak: kuota pinjam penuh (3/3) · Maksimum 3 pinjaman aktif</span></div></div></div><button class="px-3 py-1.5 text-xs font-label font-semibold text-[#7A2420] hover:bg-[#7A2420]/10 rounded-[2px] border border-transparent hover:border-[#7A2420]/30 transition-colors shrink-0" type="button">Hapus</button></div>
+</div>
+<!-- CONFIRM BAR (Docked directly at container base) -->
+<div class="mt-auto p-4 bg-[#FAF7F2] border border-[#D9D1C1] rounded-[4px] flex flex-col gap-3.5 shadow-none w-full"><div class="flex items-center justify-between gap-3 w-full relative z-10"><div class="flex items-center gap-2.5 min-w-0"><span class="material-symbols-outlined text-[#3F5A3C] text-[20px] shrink-0">event_available</span><span class="font-data text-sm font-medium text-[#1C1A16] whitespace-nowrap">2 buku · jatuh tempo <span class="font-semibold text-[#1C1A16]">Senin, 12 Okt 2026</span></span></div><span class="font-data text-xs text-[#5E584D] whitespace-nowrap shrink-0">Masa peminjaman standar 14 hari kalender</span></div><div class="w-full flex items-center justify-end gap-3 pt-3 border-t border-[#D9D1C1]"><button class="h-10 px-4 rounded-[4px] border border-[#D9D1C1] bg-transparent hover:bg-[#EDE7DA] text-[#1C1A16] font-label text-xs font-semibold flex items-center gap-2 transition-colors whitespace-nowrap" type="button"><span class="">Batal</span><span class="font-data text-[10px] text-[#5E584D] px-1.5 py-0.5 rounded-[2px] bg-[#EDE7DA] border border-[#D9D1C1]">Esc</span></button><button class="h-10 px-5 rounded-[4px] bg-[#7A2420] hover:bg-[#5B0D0D] text-[#F5F1E8] font-label text-xs font-semibold flex items-center justify-center gap-2 transition-colors min-w-[240px] whitespace-nowrap" type="button"><span class="material-symbols-outlined text-[18px]">check</span><span class="">Konfirmasi Pinjam</span><span class="font-data text-[10px] text-[#F5F1E8] px-1.5 py-0.5 rounded-[2px] bg-[#5B0D0D] font-normal">Enter</span></button></div></div>
+</div>
+</div>
+<!-- Keyboard Shortcuts & Quick Desk Status Footer -->
+<div class="w-full mt-10 pt-4 border-t border-[#D9D1C1] flex items-center justify-between text-[#5E584D] font-data text-xs">
+<div class="flex items-center gap-6">
+<span class="">Pintasan Meja:</span>
+<span class="flex items-center gap-1.5">
+<kbd class="px-1.5 py-0.5 rounded-[2px] bg-[#EDE7DA] border border-[#D9D1C1] text-[10px] text-[#1C1A16]">F2</kbd> Mode Pinjam
+      </span>
+<span class="flex items-center gap-1.5">
+<kbd class="px-1.5 py-0.5 rounded-[2px] bg-[#EDE7DA] border border-[#D9D1C1] text-[10px] text-[#1C1A16]">F3</kbd> Mode Kembali
+      </span>
+<span class="flex items-center gap-1.5">
+<kbd class="px-1.5 py-0.5 rounded-[2px] bg-[#EDE7DA] border border-[#D9D1C1] text-[10px] text-[#1C1A16]">F4</kbd> Cetak Bukti Slip
+      </span>
+<span class="flex items-center gap-1.5">
+<kbd class="px-1.5 py-0.5 rounded-[2px] bg-[#EDE7DA] border border-[#D9D1C1] text-[10px] text-[#1C1A16]">/</kbd> Cari Anggota
+      </span>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-[#3F5A3C]"></span>
+<span class="">Terminal Desk 01 · Online</span>
+</div>
+</div>
+</div></main>
+</div>
+
+
+</body></html>

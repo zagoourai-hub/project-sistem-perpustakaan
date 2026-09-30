@@ -1,0 +1,10 @@
+Bukti peminjaman — {{libraryName}}
+<div style="font-family:Georgia,serif;color:#1c1b1b;max-width:560px">
+<p>Halo {{memberName}},</p>
+<p>Berikut buku yang Anda pinjam hari ini:</p>
+<table style="border-collapse:collapse;width:100%">
+{{#each items}}<tr><td style="border-top:1px solid #d8c2bf;padding:8px 0">{{title}}<br><small style="font-family:monospace">{{barcode}}</small></td><td style="border-top:1px solid #d8c2bf;padding:8px 0;text-align:right">Kembali {{dueAt}}</td></tr>{{/each}}
+</table>
+<p>Pantau jatuh tempo di <a href="{{portalUrl}}/akun" style="color:#5b0d0d">portal anggota</a>.</p>
+<p style="color:#534341">{{libraryName}}</p>
+</div>

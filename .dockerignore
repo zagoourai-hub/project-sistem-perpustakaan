@@ -1,0 +1,14 @@
+# Build context = root repo (docker/*/Dockerfile)
+**/node_modules
+**/dist
+**/.next
+**/.env
+**/.env.local
+**/*.tsbuildinfo
+backend/uploads
+backend/src/generated
+backend/coverage
+graphify-out
+.playwright-mcp
+docs
+.git

@@ -1,0 +1,8 @@
+Pengingat: jatuh tempo {{dueDate}} — {{libraryName}}
+<div style="font-family:Georgia,serif;color:#1c1b1b;max-width:560px">
+<p>Halo {{memberName}},</p>
+<p>Buku berikut jatuh tempo pada <strong>{{dueDate}}</strong>:</p>
+<ul>{{#each items}}<li>{{title}}</li>{{/each}}</ul>
+<p>Kembalikan tepat waktu atau perpanjang lewat <a href="{{portalUrl}}/akun" style="color:#5b0d0d">portal anggota</a>.</p>
+<p style="color:#534341;font-size:12px">Anda bisa mematikan email pengingat di pengaturan akun.</p>
+</div>

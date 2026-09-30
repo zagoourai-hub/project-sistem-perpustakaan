@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    services:
+      postgres:
+        image: pgvector/pgvector:pg17
+        env:
+          POSTGRES_USER: pustaka
+          POSTGRES_PASSWORD: pustaka
+          POSTGRES_DB: pustaka
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U pustaka" --health-interval 5s --health-retries 10
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping" --health-interval 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://pustaka:pustaka@localhost:5432/pustaka
+      REDIS_URL: redis://localhost:6379
+      JWT_ACCESS_SECRET: ci-secret-ci-secret-ci-secret-ci-secret
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: backend/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: backend/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm prisma generate
+      - name: Lint
+        run: pnpm lint
+      - name: Typecheck
+        run: pnpm exec tsc --noEmit -p tsconfig.json
+      - name: Unit test
+        run: pnpm test
+      - name: Migrasi (cek migrasi bisa diterapkan dari nol)
+        run: |
+          psql "postgresql://pustaka:pustaka@localhost:5432/pustaka" -c "CREATE EXTENSION IF NOT EXISTS vector; CREATE EXTENSION IF NOT EXISTS pg_trgm;"
+          pnpm prisma migrate deploy
+      - name: E2E test
+        run: pnpm test:e2e
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    env:
+      BACKEND_URL: http://localhost:3001
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: frontend/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      # `pnpm lint` belum bisa (typescript-eslint belum mendukung TS 7, FE-X.6)
+      - name: Typecheck
+        run: pnpm exec tsc --noEmit -p .
+      - name: Build
+        run: pnpm build

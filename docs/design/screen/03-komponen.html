@@ -1,0 +1,958 @@
+<!DOCTYPE html><html lang="id" style=""><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Komponen — Pustaka Editorial</title>
+  <!-- Google Fonts: Literata, IBM Plex Sans, IBM Plex Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet" class=""><link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Work+Sans:ital,wght@0,300..700;1,300..700&amp;display=swap" rel="stylesheet" class="">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            paper: '#F5F1E8',
+            'paper-raised': '#FBF8F2',
+            'paper-sunken': '#EDE7DA',
+            ink: '#1C1A16',
+            'ink-muted': '#5E584D',
+            'ink-faint': '#8C8577',
+            rule: '#D9D1C1',
+            'rule-strong': '#B9AF9C',
+            oxblood: '#7A2420',
+            'oxblood-hover': '#651C19',
+            moss: '#3F5A3C',
+            ochre: '#A66A12',
+          },
+          fontFamily: {
+            headline: ['Literata', 'serif'],
+            body: ['"IBM Plex Sans"', 'sans-serif'],
+            data: ['"IBM Plex Mono"', 'monospace'],
+          },
+          borderRadius: {
+            'sm': '2px',
+            'DEFAULT': '4px',
+            'md': '4px',
+            'pill': '9999px',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #F5F1E8;
+      color: #1C1A16;
+      font-family: 'IBM Plex Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-tabular {
+      font-feature-settings: "tnum" 1;
+    }
+    .hairline-b {
+      border-bottom: 1px solid #D9D1C1;
+    }
+    .hairline-t {
+      border-top: 1px solid #D9D1C1;
+    }
+    .hairline-r {
+      border-right: 1px solid #D9D1C1;
+    }
+    .hairline-all {
+      border: 1px solid #D9D1C1;
+    }
+    .stamp-rotate {
+      transform: rotate(-2deg);
+    }
+    /* Simulated focus ring as specified: 2px ink outline offset 2px */
+    .simulated-focus {
+      outline: 2px solid #1C1A16;
+      outline-offset: 2px;
+    }
+  </style>
+<style id="custom-typography-overrides">
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  /* Headlines and section titles in Anton */
+  h1, h2, h3, .font-headline, .font-serif, [class*="font-headline"], [class*="font-serif"],
+  header h1, section h2, section h3, .book-title, [class*="book-title"] {
+    font-family: 'Anton', sans-serif !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.02em;
+  }
+
+  /* Body, UI text, descriptions, buttons, labels in Work Sans */
+  body, p, span:not([class*="mono"]):not([class*="data"]):not([class*="kicker"]):not([class*="call"]):not([class*="barcode"]):not([class*="date"]),
+  button, input, select, textarea, .font-body, .font-sans, [class*="font-body"], [class*="font-sans"],
+  .font-label, [class*="font-label"] {
+    font-family: 'Work Sans', sans-serif !important;
+  }
+
+  /* All data, codes, dates, amounts, kickers, chips in IBM Plex Mono */
+  .font-data, .font-mono, [class*="font-data"], [class*="font-mono"],
+  .kicker, [class*="kicker"],
+  span[class*="tracking-[0.16em]"], span[class*="tracking-widest"],
+  header > div:first-child > span,
+  table td, table th, [class*="tabular-nums"], [class*="tnum"] {
+    font-family: 'IBM Plex Mono', monospace !important;
+    font-feature-settings: "tnum" 1 !important;
+  }
+
+  /* Ensure no serif anywhere */
+  * {
+    --font-serif: 'Anton', sans-serif !important;
+    --font-headline: 'Anton', sans-serif !important;
+    --font-body: 'Work Sans', sans-serif !important;
+    --font-mono: 'IBM Plex Mono', monospace !important;
+  }
+</style></head>
+<body class="min-w-[1440px] max-w-[1440px] mx-auto bg-paper text-ink p-12 space-y-12">
+
+  <!-- ==========================================
+       SECTION 1: HEADER
+  =========================================== -->
+  <header class="pb-8 hairline-b">
+    <div class="flex justify-between items-baseline mb-3">
+      <span class="font-data text-xs font-semibold tracking-[0.16em] uppercase text-oxblood">03 · KOMPONEN</span>
+      <span class="font-data text-xs text-ink-muted">DOK: PST-COMP-03 / REVISI OKTOBER</span>
+    </div>
+    <div class="flex items-baseline justify-between">
+      <h1 class="font-headline text-5xl font-medium tracking-tight text-ink leading-none">
+        Dirakit dari kertas dan tinta.
+      </h1>
+      <p class="font-body text-sm text-ink-muted max-w-md text-right leading-relaxed">Sistem komponen fungsional berbasis kertas, tinta, dan ketegasan visual cetak.</p>
+    </div>
+    <!-- 2px Ink rule under masthead as requested by brand guidelines -->
+    <div class="w-full h-[2px] bg-ink mt-8"></div>
+  </header>
+
+  <!-- ==========================================
+       SECTION 2: BUTTONS
+  =========================================== -->
+  <section class="grid grid-cols-12 gap-8 py-8 hairline-b">
+    <div class="col-span-3 pr-6">
+      <span class="font-data text-xs text-oxblood uppercase font-medium">01 · Tindakan</span>
+      <h2 class="font-headline text-2xl font-medium text-ink mt-1 mb-2">Tombol (Buttons)</h2>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        Tiga tingkat hierarki: Primer (<span class="font-data text-xs">Oxblood</span>) khusus satu tindakan utama per layar, Sekunder (<span class="font-data text-xs">Paper-raised</span> berbingkai 1px), dan Ghost. Tinggi standar 40px, radius 4px.
+      </p>
+    </div>
+    <div class="col-span-9 space-y-6">
+      <!-- Table of states -->
+      <div class="bg-paper-raised hairline-all rounded-sm p-6 space-y-5">
+        <div class="grid grid-cols-6 gap-4 font-data text-xs text-ink-faint pb-3 hairline-b">
+          <span class="">TIPE</span>
+          <span class="">DEFAULT</span>
+          <span class="">HOVER</span>
+          <span class="">FOKUS (OFFSET 2PX)</span>
+          <span class="">NONAKTIF (DISABLED)</span>
+          <span class="">MEMUAT (LOADING)</span>
+        </div>
+
+        <!-- Primary Row -->
+        <div class="grid grid-cols-6 gap-4 items-center">
+          <span class="font-data text-xs font-medium text-ink">Primary</span>
+          <div>
+            <button class="h-10 px-[18px] bg-oxblood text-paper-raised font-body text-sm font-medium rounded hover:bg-oxblood-hover transition-colors inline-flex items-center justify-center">
+              Pinjam
+            </button>
+          </div>
+          <div>
+            <button class="h-10 px-[18px] bg-[#651C19] text-paper-raised font-body text-sm font-medium rounded inline-flex items-center justify-center shadow-none">
+              Pinjam
+            </button>
+          </div>
+          <div>
+            <button class="h-10 px-[18px] bg-oxblood text-paper-raised font-body text-sm font-medium rounded simulated-focus inline-flex items-center justify-center">
+              Pinjam
+            </button>
+          </div>
+          <div>
+            <button disabled="" class="h-10 px-[18px] bg-rule text-ink-faint font-body text-sm font-medium rounded cursor-not-allowed inline-flex items-center justify-center">
+              Pinjam
+            </button>
+          </div>
+          <div>
+            <button class="h-10 px-[18px] bg-oxblood text-paper-raised font-body text-sm font-medium rounded inline-flex items-center gap-2 justify-center opacity-90">
+              <span class="inline-block w-3.5 h-3.5 border-2 border-paper-raised border-t-transparent rounded-full animate-spin"></span>
+              <span class="">Pinjam…</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Secondary Row -->
+        <div class="grid grid-cols-6 gap-4 items-center pt-3 hairline-t">
+          <span class="font-data text-xs font-medium text-ink">Secondary</span>
+          <div>
+            <button class="h-10 px-[18px] bg-paper-raised border border-rule-strong text-ink font-body text-sm font-medium rounded hover:bg-paper transition-colors inline-flex items-center justify-center">
+              Perpanjang
+            </button>
+          </div>
+          <div>
+            <button class="h-10 px-[18px] bg-paper-sunken border border-ink text-ink font-body text-sm font-medium rounded inline-flex items-center justify-center">
+              Perpanjang
+            </button>
+          </div>
+          <div>
+            <button class="h-10 px-[18px] bg-paper-raised border border-rule-strong text-ink font-body text-sm font-medium rounded simulated-focus inline-flex items-center justify-center">
+              Perpanjang
+            </button>
+          </div>
+          <div>
+            <button disabled="" class="h-10 px-[18px] bg-paper border border-rule text-ink-faint font-body text-sm font-medium rounded cursor-not-allowed inline-flex items-center justify-center">
+              Perpanjang
+            </button>
+          </div>
+          <div>
+            <button class="h-10 px-[18px] bg-paper-raised border border-rule-strong text-ink font-body text-sm font-medium rounded inline-flex items-center gap-2 justify-center">
+              <span class="inline-block w-3.5 h-3.5 border-2 border-ink border-t-transparent rounded-full animate-spin"></span>
+              <span class="">Memproses…</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Ghost Row -->
+        <div class="grid grid-cols-6 gap-4 items-center pt-3 hairline-t">
+          <span class="font-data text-xs font-medium text-ink">Ghost</span>
+          <div>
+            <button class="h-10 px-3.5 bg-transparent text-ink font-body text-sm font-medium rounded hover:bg-paper transition-colors inline-flex items-center justify-center">
+              Batal
+            </button>
+          </div>
+          <div>
+            <button class="h-10 px-3.5 bg-paper text-ink font-body text-sm font-medium rounded inline-flex items-center justify-center">
+              Batal
+            </button>
+          </div>
+          <div>
+            <button class="h-10 px-3.5 bg-transparent text-ink font-body text-sm font-medium rounded simulated-focus inline-flex items-center justify-center">
+              Batal
+            </button>
+          </div>
+          <div>
+            <button disabled="" class="h-10 px-3.5 bg-transparent text-ink-faint font-body text-sm font-medium rounded cursor-not-allowed inline-flex items-center justify-center">
+              Batal
+            </button>
+          </div>
+          <div>
+            <button class="h-10 px-3.5 bg-transparent text-ink font-body text-sm font-medium rounded inline-flex items-center gap-2 justify-center">
+              <span class="inline-block w-3.5 h-3.5 border-2 border-ink border-t-transparent rounded-full animate-spin"></span>
+              <span class="">Batal</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 3: INPUTS
+  =========================================== -->
+  <section class="grid grid-cols-12 gap-8 py-8 hairline-b">
+    <div class="col-span-3 pr-6">
+      <span class="font-data text-xs text-oxblood uppercase font-medium">02 · Masukan Data</span>
+      <h2 class="font-headline text-2xl font-medium text-ink mt-1 mb-2">Kolom Isian (Inputs)</h2>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        Menggunakan latar <span class="font-data text-xs">paper-raised</span> dengan batas bingkai <span class="font-data text-xs">rule-strong</span>. Pesan galat tampil tegas dalam <span class="font-data text-xs">oxblood</span> tanpa ikon yang bising.
+      </p>
+    </div>
+    <div class="col-span-9 grid grid-cols-3 gap-6">
+      
+      <!-- Input 1: Standard with helper -->
+      <div class="bg-paper-raised hairline-all rounded p-5 space-y-2">
+        <span class="font-data text-[11px] text-ink-faint uppercase tracking-wider block">Standar + Teks Bantuan</span>
+        <label class="block font-body text-sm font-medium text-ink" for="input-nomor-induk">
+          Nomor induk
+        </label>
+        <input id="input-nomor-induk" type="text" value="2026-X-0419" class="w-full h-10 px-3 bg-paper-raised border border-rule-strong rounded text-ink font-body text-sm focus:outline-none focus:ring-2 focus:ring-ink">
+        <p class="font-body text-xs text-ink-muted pt-1">
+          Format: tahun angkatan diikuti kode unik rombongan belajar.
+        </p>
+      </div>
+
+      <!-- Input 2: Error State -->
+      <div class="bg-paper-raised hairline-all rounded p-5 space-y-2">
+        <span class="font-data text-[11px] text-oxblood uppercase tracking-wider block">Status Galat (Error)</span>
+        <label class="block font-body text-sm font-medium text-ink" for="input-error-state">
+          Nomor induk
+        </label>
+        <input id="input-error-state" type="text" value="9999-Z-0000" class="w-full h-10 px-3 bg-paper-raised border-2 border-oxblood rounded text-ink font-body text-sm focus:outline-none">
+        <p class="font-body text-xs text-oxblood font-medium pt-1">
+          Anggota tidak ditemukan dalam pangkalan data.
+        </p>
+      </div>
+
+      <!-- Input 3: Search with Icon -->
+      <div class="bg-paper-raised hairline-all rounded p-5 space-y-2">
+        <span class="font-data text-[11px] text-ink-faint uppercase tracking-wider block">Pencarian + Ikon</span>
+        <label class="block font-body text-sm font-medium text-ink" for="input-search-bar">
+          Cari katalog pustaka
+        </label>
+        <div class="relative">
+          <input id="input-search-bar" type="text" placeholder="Ketik judul buku, pengarang, subjek…" class="w-full h-10 pl-9 pr-3 bg-paper-raised border border-rule-strong rounded text-ink font-body text-sm placeholder:text-ink-faint focus:outline-none focus:ring-2 focus:ring-ink">
+          <span class="absolute left-3 top-2.5 text-ink-muted pointer-events-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="search" aria-hidden="true" class="lucide lucide-search w-4 h-4"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>
+          </span>
+        </div>
+        <p class="font-body text-xs text-ink-muted pt-1">
+          Mendukung kata kunci dan penelusuran semantik.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 4: SCAN INPUT
+  =========================================== -->
+  <section class="grid grid-cols-12 gap-8 py-8 hairline-b">
+    <div class="col-span-3 pr-6">
+      <span class="font-data text-xs text-oxblood uppercase font-medium">03 · Sirkulasi Cepat</span>
+      <h2 class="font-headline text-2xl font-medium text-ink mt-1 mb-2">Scan Input (Meja Staf)</h2>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        Komponen utama meja sirkulasi staf: tinggi 56px, tipografi monospasial data, tombol pemindai kamera, serta transisi baris seketika. Tiga status ditampilkan berdampingan: Siaga (Idle), Berhasil (Success), dan Galat (Error).
+      </p>
+    </div>
+    <div class="col-span-9 space-y-5">
+      
+      <!-- Scan 1: Idle -->
+      <div class="bg-paper-raised hairline-all rounded p-5">
+        <div class="flex justify-between items-center mb-2">
+          <span class="font-data text-xs uppercase text-ink-muted font-medium">Status 01: Siaga (Idle / Always-Focused Look)</span>
+          <span class="font-data text-xs text-ink-faint">PINTASAN KEYBOARD [/]</span>
+        </div>
+        <div class="relative flex items-center">
+          <input type="text" readonly="" placeholder="Scan barcode atau kartu anggota…" class="w-full h-14 pl-4 pr-14 bg-paper-raised border-2 border-ink rounded font-data text-base text-ink placeholder:text-ink-faint focus:outline-none font-tabular">
+          <button class="absolute right-3 w-9 h-9 flex items-center justify-center text-ink-muted hover:text-ink border border-rule rounded bg-paper" title="Buka Kamera Pemindai">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="camera" aria-hidden="true" class="lucide lucide-camera w-4 h-4"><path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+          </button>
+        </div>
+        <div class="text-[11px] font-data text-ink-muted mt-2">
+          Meja Siap Sirkulasi · Kursor aktif menunggu sinyal pemindai laser USB/Bluetooth.
+        </div>
+      </div>
+
+      <!-- Scan 2: Success -->
+      <div class="bg-paper-raised hairline-all rounded p-5">
+        <div class="flex justify-between items-center mb-2">
+          <span class="font-data text-xs uppercase text-moss font-semibold">Status 02: Berhasil Scan (Row Slides In)</span>
+          <span class="font-data text-xs text-moss">PEMINDAIAN TEPAT · 10:14:02 WIB</span>
+        </div>
+        <div class="relative flex items-center mb-3">
+          <input type="text" value="PST-2026-000142" readonly="" class="w-full h-14 pl-4 pr-14 bg-paper-raised border border-rule-strong rounded font-data text-base text-ink focus:outline-none font-tabular">
+          <button class="absolute right-3 w-9 h-9 flex items-center justify-center text-ink border border-rule rounded bg-paper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="camera" aria-hidden="true" class="lucide lucide-camera w-4 h-4"><path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+          </button>
+        </div>
+        <!-- Slide-in Row Preview -->
+        <div class="bg-paper border-l-4 border-moss border-t border-r border-b border-rule rounded-sm p-3.5 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="font-data text-xs text-ink font-semibold px-2 py-0.5 border border-rule rounded bg-paper-raised">PST-2026-000142</span>
+            <span class="font-headline text-sm font-semibold text-ink">Bumi Manusia</span>
+            <span class="text-xs text-ink-muted font-body">Pramoedya Ananta Toer</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="font-body text-xs text-moss font-medium px-2 py-0.5 border border-moss/30 bg-moss/5 rounded-pill">Tersedia</span>
+            <span class="font-data text-xs text-ink-muted">Rak B-04</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scan 3: Error -->
+      <div class="bg-paper-raised hairline-all rounded p-5">
+        <div class="flex justify-between items-center mb-2">
+          <span class="font-data text-xs uppercase text-oxblood font-semibold">Status 03: Galat Pemindaian (Error)</span>
+          <span class="font-data text-xs text-oxblood">KODE: ERR-ALREADY-LOANED</span>
+        </div>
+        <div class="relative flex items-center mb-2">
+          <input type="text" value="PST-2026-000088" readonly="" class="w-full h-14 pl-4 pr-14 bg-paper-raised border-2 border-oxblood rounded font-data text-base text-ink focus:outline-none font-tabular">
+          <button class="absolute right-3 w-9 h-9 flex items-center justify-center text-oxblood border border-oxblood/40 rounded bg-paper">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="camera" aria-hidden="true" class="lucide lucide-camera w-4 h-4"><path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+          </button>
+        </div>
+        <p class="font-body text-xs text-oxblood font-medium">
+          Eksemplar sedang dipinjam oleh anggota lain (Salinan #02 · Nadia Putri). Kembalikan buku terlebih dahulu sebelum meminjam ulang.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 5 & 6: BADGES & CALLNUMBER CHIP
+  =========================================== -->
+  <div class="grid grid-cols-12 gap-8 py-8 hairline-b">
+    
+    <!-- 5. Status Badges -->
+    <div class="col-span-6 pr-6 hairline-r">
+      <span class="font-data text-xs text-oxblood uppercase font-medium">04 · Status Koleksi</span>
+      <h2 class="font-headline text-2xl font-medium text-ink mt-1 mb-2">Lencana Status (Status Badges)</h2>
+      <p class="text-sm text-ink-muted mb-5 leading-relaxed">
+        Bentuk lonjong (*pill shape*), radius 9999px. Menggunakan teks berwarna dengan latar transparan atau aksen tipis, kecuali status Terlambat yang menggunakan isian oxblood pekat.
+      </p>
+
+      <div class="bg-paper-raised hairline-all rounded p-6 space-y-4">
+        
+        <div class="flex items-center justify-between py-1 hairline-b">
+          <span class="font-data text-xs text-ink-muted">Tersedia</span>
+          <span class="px-3 py-0.5 rounded-pill font-body text-xs font-semibold text-moss border border-moss/30 bg-transparent">
+            Tersedia
+          </span>
+        </div>
+
+        <div class="flex items-center justify-between py-1 hairline-b">
+          <span class="font-data text-xs text-ink-muted">Dipinjam</span>
+          <span class="px-3 py-0.5 rounded-pill font-body text-xs font-medium text-ink-muted border border-rule-strong bg-transparent">
+            Dipinjam
+          </span>
+        </div>
+
+        <div class="flex items-center justify-between py-1 hairline-b">
+          <span class="font-data text-xs text-ink-muted">Disimpan untuk Reservasi</span>
+          <span class="px-3 py-0.5 rounded-pill font-body text-xs font-semibold text-ochre border border-ochre/40 bg-transparent">
+            Disimpan untuk reservasi
+          </span>
+        </div>
+
+        <div class="flex items-center justify-between py-1 hairline-b">
+          <span class="font-data text-xs text-ink-muted">Terlambat (Overdue)</span>
+          <span class="px-3 py-0.5 rounded-pill font-body text-xs font-medium text-paper-raised bg-oxblood">
+            Terlambat
+          </span>
+        </div>
+
+        <div class="flex items-center justify-between py-1">
+          <span class="font-data text-xs text-ink-muted">Hilang / Rusak</span>
+          <span class="px-3 py-0.5 rounded-pill font-body text-xs font-medium text-ink-muted border border-rule bg-transparent">
+            Hilang
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 6. CallNumber Chip -->
+    <div class="col-span-6 pl-2">
+      <span class="font-data text-xs text-oxblood uppercase font-medium">05 · Klasifikasi Dewey</span>
+      <h2 class="font-headline text-2xl font-medium text-ink mt-1 mb-2">Chip Nomor Panggil (CallNumber)</h2>
+      <p class="text-sm text-ink-muted mb-5 leading-relaxed">
+        Penanda lokasi fisik buku: tipografi font data monospasial, bingkai sehelai rambut 1px, sudut tajam 2px. Hadir pada setiap baris hasil OPAC dan kartu katalog.
+      </p>
+
+      <div class="bg-paper-raised hairline-all rounded p-6 space-y-4">
+        
+        <div class="p-3 bg-paper hairline-all rounded-sm flex items-center justify-between">
+          <div>
+            <span class="font-body text-xs text-ink-muted block mb-1">Sastra Indonesia (Fiksi)</span>
+            <span class="font-data text-xs text-ink font-semibold border border-ink/40 rounded-sm px-2.5 py-1 bg-paper-raised inline-block font-tabular">
+              899.221 PRA b
+            </span>
+          </div>
+          <span class="font-data text-xs text-ink-faint">Pramoedya Ananta Toer</span>
+        </div>
+
+        <div class="p-3 bg-paper hairline-all rounded-sm flex items-center justify-between">
+          <div>
+            <span class="font-body text-xs text-ink-muted block mb-1">Sastra Inggris &amp; Fiksi Fantasi</span>
+            <span class="font-data text-xs text-ink font-semibold border border-ink/40 rounded-sm px-2.5 py-1 bg-paper-raised inline-block font-tabular">
+              823 ROW h
+            </span>
+          </div>
+          <span class="font-data text-xs text-ink-faint">J.K. Rowling</span>
+        </div>
+
+        <div class="p-3 bg-paper hairline-all rounded-sm flex items-center justify-between">
+          <div>
+            <span class="font-body text-xs text-ink-muted block mb-1">Ilmu Pengetahuan Murni &amp; Sains</span>
+            <span class="font-data text-xs text-ink font-semibold border border-ink/40 rounded-sm px-2.5 py-1 bg-paper-raised inline-block font-tabular">
+              500 SUM f
+            </span>
+          </div>
+          <span class="font-data text-xs text-ink-faint">Suma'mur P.K.</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==========================================
+       SECTION 7: DUESLIP (SIGNATURE COMPONENT)
+  =========================================== -->
+  <section class="grid grid-cols-12 gap-8 py-8 hairline-b">
+    <div class="col-span-3 pr-6">
+      <span class="font-data text-xs text-oxblood uppercase font-medium">06 · Identitas Cetak</span>
+      <h2 class="font-headline text-2xl font-medium text-ink mt-1 mb-2">Slip Batas Kembali (DueSlip)</h2>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        Komponen tanda tangan pada portal anggota. Mengingatkan kembali pada lembar cap jatuh tempo di balik sampul buku. Menggunakan cap tanggal miring <span class="font-data text-xs">−2°</span> berbingkai persegi panjang tipis.
+      </p>
+    </div>
+    <div class="col-span-9 grid grid-cols-3 gap-6">
+      
+      <!-- Variant 1: Normal -->
+      <div class="bg-paper-raised hairline-all rounded-sm p-6 relative flex flex-col justify-between min-h-[260px]">
+        <div>
+          <div class="flex justify-between items-start hairline-b pb-3 mb-4">
+            <span class="font-data text-[10px] text-ink-muted uppercase tracking-wider">PUSTAKA SMA KOLESE</span>
+            <span class="font-data text-[10px] text-ink-faint">SLIP SIRKULASI</span>
+          </div>
+          <h3 class="font-body text-base font-semibold text-ink leading-snug">Laskar Pelangi</h3>
+          <p class="font-body text-xs text-ink-muted mt-0.5">Andrea Hirata · Salinan #02</p>
+          <div class="mt-4 font-data text-xs text-ink-faint space-y-1">
+            <div class="flex justify-between"><span class="">DIPINJAM:</span><span class="">28 SEP 2026</span></div>
+            <div class="flex justify-between"><span class="">ANGGOTA:</span><span class="">M-2024-0081</span></div>
+          </div>
+        </div>
+
+        <!-- Stamp: Normal (Ink) -->
+        <div class="pt-6 hairline-t mt-4 text-center">
+          <span class="font-data text-[10px] text-ink-faint uppercase block mb-1.5 tracking-wider">Jatuh Tempo Pengembalian:</span>
+          <div class="inline-block border border-ink text-ink font-data text-sm font-semibold tracking-wider px-3.5 py-1 stamp-rotate font-tabular">
+            12 OKT 2026
+          </div>
+          <span class="font-body text-[11px] text-moss block mt-2 font-medium">Status reguler (14 hari)</span>
+        </div>
+      </div>
+
+      <!-- Variant 2: Due Soon (Ochre) -->
+      <div class="bg-paper-raised hairline-all rounded-sm p-6 relative flex flex-col justify-between min-h-[260px]">
+        <div>
+          <div class="flex justify-between items-start hairline-b pb-3 mb-4">
+            <span class="font-data text-[10px] text-ochre uppercase tracking-wider font-medium">SEGERA JATUH TEMPO</span>
+            <span class="font-data text-[10px] text-ink-faint">SLIP SIRKULASI</span>
+          </div>
+          <h3 class="font-body text-base font-semibold text-ink leading-snug">Laskar Pelangi</h3>
+          <p class="font-body text-xs text-ink-muted mt-0.5">Andrea Hirata · Salinan #02</p>
+          <div class="mt-4 font-data text-xs text-ink-faint space-y-1">
+            <div class="flex justify-between"><span class="">DIPINJAM:</span><span class="">16 SEP 2026</span></div>
+            <div class="flex justify-between"><span class="">ANGGOTA:</span><span class="">M-2024-0081</span></div>
+          </div>
+        </div>
+
+        <!-- Stamp: Due Soon (Ochre) -->
+        <div class="pt-6 hairline-t mt-4 text-center">
+          <span class="font-data text-[10px] text-ink-faint uppercase block mb-1.5 tracking-wider">Jatuh Tempo Pengembalian:</span>
+          <div class="inline-block border-2 border-ochre text-ochre font-data text-sm font-semibold tracking-wider px-3.5 py-1 stamp-rotate font-tabular">
+            30 SEP 2026
+          </div>
+          <span class="font-body text-[11px] text-ochre font-medium block mt-2">2 hari lagi · Segera perpanjang</span>
+        </div>
+      </div>
+
+      <!-- Variant 3: Overdue (Oxblood) -->
+      <div class="bg-paper-raised hairline-all rounded-sm p-6 relative flex flex-col justify-between min-h-[260px] border-oxblood/30">
+        <div>
+          <div class="flex justify-between items-start hairline-b pb-3 mb-4">
+            <span class="font-data text-[10px] text-oxblood uppercase tracking-wider font-semibold">PERINGATAN TERLAMBAT</span>
+            <span class="font-data text-[10px] text-oxblood">DENDA BERJALAN</span>
+          </div>
+          <h3 class="font-body text-base font-semibold text-ink leading-snug">Laskar Pelangi</h3>
+          <p class="font-body text-xs text-ink-muted mt-0.5">Andrea Hirata · Salinan #02</p>
+          <div class="mt-4 font-data text-xs text-ink-faint space-y-1">
+            <div class="flex justify-between"><span class="">DIPINJAM:</span><span class="">06 SEP 2026</span></div>
+            <div class="flex justify-between"><span class="">ANGGOTA:</span><span class="">M-2024-0081</span></div>
+          </div>
+        </div>
+
+        <!-- Stamp: Overdue (Oxblood) -->
+        <div class="pt-6 hairline-t mt-4 text-center">
+          <span class="font-data text-[10px] text-oxblood uppercase block mb-1.5 tracking-wider font-medium">Jatuh Tempo Pengembalian:</span>
+          <div class="inline-block border-2 border-oxblood text-oxblood font-data text-sm font-bold tracking-wider px-3.5 py-1 stamp-rotate font-tabular">
+            20 SEP 2026
+          </div>
+          <span class="font-data text-xs text-oxblood font-semibold block mt-2">
+            Terlambat 8 hari · Rp8.000
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 8: INDEXCARD MINI
+  =========================================== -->
+  <section class="grid grid-cols-12 gap-8 py-8 hairline-b">
+    <div class="col-span-3 pr-6">
+      <span class="font-data text-xs text-oxblood uppercase font-medium">07 · Kartu Katalog</span>
+      <h2 class="font-headline text-2xl font-medium text-ink mt-1 mb-2">IndexCard (Mini)</h2>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        Format baku kartu bibliografi laci katalog fisik perpustakaan. Nomor panggil di sudut kiri atas, dilanjutkan tajuk judul Literata dan pasangan label/nilai dua kolom yang rapi.
+      </p>
+    </div>
+    <div class="col-span-9">
+      <div class="bg-paper-raised hairline-all rounded-sm p-8 max-w-2xl mx-auto shadow-none">
+        
+        <!-- Header row of Card -->
+        <div class="flex justify-between items-baseline mb-3">
+          <span class="font-data text-xs font-semibold text-ink px-2.5 py-1 border border-ink/40 rounded-sm bg-paper font-tabular">
+            899.221 PRA b
+          </span>
+          <span class="font-data text-xs text-ink-muted">KATALOG NO. #0442</span>
+        </div>
+
+        <!-- Title & Author -->
+        <h3 class="font-headline text-3xl font-medium text-ink mt-2">
+          Bumi Manusia
+        </h3>
+        <p class="font-body text-sm text-ink-muted mt-1 mb-6">
+          Pramoedya Ananta Toer
+        </p>
+
+        <!-- Hairline divider -->
+        <div class="w-full hairline-b mb-6"></div>
+
+        <!-- Label / Value list (Two column grid) -->
+        <dl class="grid grid-cols-2 gap-x-8 gap-y-4 font-body text-xs">
+          <div class="flex justify-between hairline-b pb-2">
+            <dt class="text-ink-muted uppercase font-data text-[11px]">Penerbit</dt>
+            <dd class="text-ink font-medium text-right">Lentera Dipantara</dd>
+          </div>
+          <div class="flex justify-between hairline-b pb-2">
+            <dt class="text-ink-muted uppercase font-data text-[11px]">Tahun Terbit</dt>
+            <dd class="text-ink font-data font-medium text-right font-tabular">2005</dd>
+          </div>
+          <div class="flex justify-between hairline-b pb-2">
+            <dt class="text-ink-muted uppercase font-data text-[11px]">ISBN</dt>
+            <dd class="text-ink font-data text-right font-tabular">979-97312-3-2</dd>
+          </div>
+          <div class="flex justify-between hairline-b pb-2">
+            <dt class="text-ink-muted uppercase font-data text-[11px]">Subjek</dt>
+            <dd class="text-ink font-medium text-right">Fiksi Sejarah</dd>
+          </div>
+          <div class="flex justify-between hairline-b pb-2">
+            <dt class="text-ink-muted uppercase font-data text-[11px]">Bahasa</dt>
+            <dd class="text-ink font-medium text-right">Indonesia</dd>
+          </div>
+          <div class="flex justify-between hairline-b pb-2">
+            <dt class="text-ink-muted uppercase font-data text-[11px]">Lokasi Rak</dt>
+            <dd class="text-ink font-data font-medium text-right">Lt. 2 / B-04</dd>
+          </div>
+        </dl>
+
+        <!-- Availability footer of card -->
+        <div class="mt-6 pt-4 hairline-t flex items-center justify-between font-data text-xs">
+          <span class="text-ink-muted">STATUS SIRKULASI:</span>
+          <span class="text-moss font-semibold">2 dari 3 eksemplar tersedia di rak</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 9: BOOK RESULT ROW
+  =========================================== -->
+  <section class="grid grid-cols-12 gap-8 py-8 hairline-b">
+    <div class="col-span-3 pr-6">
+      <span class="font-data text-xs text-oxblood uppercase font-medium">08 · Hasil Pencarian</span>
+      <h2 class="font-headline text-2xl font-medium text-ink mt-1 mb-2">Baris Hasil Buku (Book Result Row)</h2>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        Penyajian daftar pustaka di OPAC: rasio sampul buku 2:3, judul dalam headline Literata, pengarang Plex Sans, chip Dewey, dan ketersediaan fisik. Termasuk varian pencarian semantik dan sampul tipografis.
+      </p>
+    </div>
+    <div class="col-span-9 space-y-4">
+      
+      <!-- Row 1: Normal standard cover -->
+      <div class="bg-paper-raised hairline-all rounded p-4 flex items-center justify-between hover:bg-[#FAF5EC] transition-colors">
+        <div class="flex items-center gap-5">
+          <!-- 2:3 Cover thumbnail simulated with typographic book design -->
+          <div class="w-14 h-20 bg-[#2C382A] text-paper-raised rounded-sm hairline-all flex flex-col justify-between p-1.5 flex-shrink-0">
+            <span class="font-data text-[7px] text-paper-raised/60 tracking-wider">NOVEL</span>
+            <span class="font-headline text-[10px] leading-tight font-medium">Bumi Manusia</span>
+            <span class="font-body text-[7px] text-paper-raised/70">Pramoedya</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2.5 mb-1">
+              <span class="font-data text-xs font-medium text-ink border border-ink/40 rounded-sm px-2 py-0.5 bg-paper font-tabular">
+                899.221 PRA b
+              </span>
+              <span class="font-body text-xs text-ink-muted">· 1980 (Cetakan 2005)</span>
+            </div>
+            <h3 class="font-headline text-lg font-medium text-ink leading-tight">
+              Bumi Manusia
+            </h3>
+            <p class="font-body text-xs text-ink-muted mt-0.5">
+              Pramoedya Ananta Toer · Hasta Mitra
+            </p>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <span class="font-data text-xs text-moss font-semibold block">
+            2 dari 3 tersedia
+          </span>
+          <span class="font-data text-xs text-ink-muted">
+            Rak B-04
+          </span>
+        </div>
+      </div>
+
+      <!-- Row 2: With Semantic Search muted badge -->
+      <div class="bg-paper-raised hairline-all rounded p-4 flex items-center justify-between hover:bg-[#FAF5EC] transition-colors">
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-20 bg-[#3A332B] text-paper-raised rounded-sm hairline-all flex flex-col justify-between p-1.5 flex-shrink-0">
+            <span class="font-data text-[7px] text-paper-raised/60 tracking-wider">FILSAFAT</span>
+            <span class="font-headline text-[10px] leading-tight font-medium">Filosofi Teras</span>
+            <span class="font-body text-[7px] text-paper-raised/70">H. Manampiring</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2.5 mb-1">
+              <span class="font-data text-xs font-medium text-ink border border-ink/40 rounded-sm px-2 py-0.5 bg-paper font-tabular">
+                188 MAN f
+              </span>
+              <span class="font-body text-xs text-ink-muted">· 2019</span>
+              <span class="font-data text-[10px] text-ink-muted uppercase border border-rule px-1.5 py-0.2 rounded-sm bg-paper-sunken">
+                hasil semantik
+              </span>
+            </div>
+            <h3 class="font-headline text-lg font-medium text-ink leading-tight">
+              Filosofi Teras: Filsafat Yunani-Kuno Stoa untuk Mental Tangguh
+            </h3>
+            <p class="font-body text-xs text-ink-muted mt-0.5">
+              Henry Manampiring · Penerbit Buku Kompas
+            </p>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <span class="font-data text-xs text-moss font-semibold block">
+            4 dari 4 tersedia
+          </span>
+          <span class="font-data text-xs text-ink-muted">
+            Rak F-01
+          </span>
+        </div>
+      </div>
+
+      <!-- Row 3: Typographic Cover Placeholder (solid tone derived from title, no icon) -->
+      <div class="bg-paper-raised hairline-all rounded p-4 flex items-center justify-between hover:bg-[#FAF5EC] transition-colors">
+        <div class="flex items-center gap-5">
+          <!-- Pure Typographic Placeholder (No Icon, No Image) -->
+          <div class="w-14 h-20 bg-[#E3DAC9] border border-rule-strong rounded-sm flex flex-col justify-between p-1.5 flex-shrink-0">
+            <span class="font-data text-[7px] text-ink-muted tracking-wider">EDISI TEKS</span>
+            <span class="font-headline text-[9px] font-semibold text-ink leading-tight line-clamp-2">Laskar Pelangi</span>
+            <span class="font-body text-[7px] text-ink-muted">A. Hirata</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2.5 mb-1">
+              <span class="font-data text-xs font-medium text-ink border border-ink/40 rounded-sm px-2 py-0.5 bg-paper font-tabular">
+                899.221 HIR l
+              </span>
+              <span class="font-body text-xs text-ink-muted">· 2005 (Sampul Typographic Placeholder)</span>
+            </div>
+            <h3 class="font-headline text-lg font-medium text-ink leading-tight">
+              Laskar Pelangi
+            </h3>
+            <p class="font-body text-xs text-ink-muted mt-0.5">
+              Andrea Hirata · Bentang Pustaka
+            </p>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <span class="font-data text-xs text-ochre font-semibold block">
+            1 dari 2 tersedia
+          </span>
+          <span class="font-data text-xs text-ink-muted">
+            Rak B-02
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 10: TABLE OF LOANS (5 ROWS)
+  =========================================== -->
+  <section class="grid grid-cols-12 gap-8 py-8 hairline-b">
+    <div class="col-span-3 pr-6">
+      <span class="font-data text-xs text-oxblood uppercase font-medium">09 · Tabel Sirkulasi</span>
+      <h2 class="font-headline text-2xl font-medium text-ink mt-1 mb-2">Tabel Pinjaman (Table)</h2>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        Struktur tabel rapat meja konsol staf: garis pemisah sehelai rambut, selang-seling warna latar halus (*subtle zebra*), perataan kanan untuk seluruh nomor barcode, tanggal, dan denda rupiah dalam font data berfitur monospasial tabular (<span class="font-data text-xs">tnum</span>).
+      </p>
+    </div>
+    <div class="col-span-9">
+      <div class="bg-paper-raised hairline-all rounded-sm overflow-hidden">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-paper border-b border-rule-strong font-body text-xs font-medium text-ink uppercase tracking-wider">
+              <th class="py-3 px-4 text-left">Barcode</th>
+              <th class="py-3 px-4 text-left">Judul Pustaka</th>
+              <th class="py-3 px-4 text-left">Anggota</th>
+              <th class="py-3 px-4 text-right">Jatuh Tempo</th>
+              <th class="py-3 px-4 text-right">Denda</th>
+            </tr>
+          </thead>
+          <tbody class="font-body text-xs text-ink divide-y divide-rule">
+            
+            <!-- Row 1 -->
+            <tr class="bg-paper-raised hover:bg-paper transition-colors">
+              <td class="py-3 px-4 font-data font-tabular text-ink-muted">PST-2026-000142</td>
+              <td class="py-3 px-4 font-headline text-sm font-medium">Bumi Manusia</td>
+              <td class="py-3 px-4">Nadia Putri (XI IPA 2)</td>
+              <td class="py-3 px-4 text-right font-data font-tabular text-oxblood font-semibold">12 Okt 2026</td>
+              <td class="py-3 px-4 text-right font-data font-tabular text-oxblood font-semibold">Rp12.500</td>
+            </tr>
+
+            <!-- Row 2 (Zebra) -->
+            <tr class="bg-paper hover:bg-[#F2ECE0] transition-colors">
+              <td class="py-3 px-4 font-data font-tabular text-ink-muted">PST-2026-000219</td>
+              <td class="py-3 px-4 font-headline text-sm font-medium">Laskar Pelangi</td>
+              <td class="py-3 px-4">Dimas Arya (XII IPS 1)</td>
+              <td class="py-3 px-4 text-right font-data font-tabular text-ink">15 Okt 2026</td>
+              <td class="py-3 px-4 text-right font-data font-tabular text-ink-muted">Rp0</td>
+            </tr>
+
+            <!-- Row 3 -->
+            <tr class="bg-paper-raised hover:bg-paper transition-colors">
+              <td class="py-3 px-4 font-data font-tabular text-ink-muted">PST-2026-000305</td>
+              <td class="py-3 px-4 font-headline text-sm font-medium">Filosofi Teras</td>
+              <td class="py-3 px-4">Siti Rahma (X MIPA 3)</td>
+              <td class="py-3 px-4 text-right font-data font-tabular text-oxblood font-semibold">09 Okt 2026</td>
+              <td class="py-3 px-4 text-right font-data font-tabular text-oxblood font-semibold">Rp3.000</td>
+            </tr>
+
+            <!-- Row 4 (Zebra) -->
+            <tr class="bg-paper hover:bg-[#F2ECE0] transition-colors">
+              <td class="py-3 px-4 font-data font-tabular text-ink-muted">PST-2026-000412</td>
+              <td class="py-3 px-4 font-headline text-sm font-medium">Arok Dedes</td>
+              <td class="py-3 px-4">Ahmad Fauzi (Staf Lab)</td>
+              <td class="py-3 px-4 text-right font-data font-tabular text-ink">19 Okt 2026</td>
+              <td class="py-3 px-4 text-right font-data font-tabular text-ink-muted">Rp0</td>
+            </tr>
+
+            <!-- Row 5 -->
+            <tr class="bg-paper-raised hover:bg-paper transition-colors">
+              <td class="py-3 px-4 font-data font-tabular text-ink-muted">PST-2026-000551</td>
+              <td class="py-3 px-4 font-headline text-sm font-medium">Cantik Itu Luka</td>
+              <td class="py-3 px-4">Ratih Kumala (XII Bahasa)</td>
+              <td class="py-3 px-4 text-right font-data font-tabular text-ochre font-semibold">14 Okt 2026</td>
+              <td class="py-3 px-4 text-right font-data font-tabular text-ink-muted">Rp0</td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <tr class="bg-paper hairline-t font-data text-xs text-ink-muted">
+              <td colspan="4" class="py-3 px-4 text-right font-medium">TOTAL DENDA TERHUTANG AKTIF:</td>
+              <td class="py-3 px-4 text-right font-data font-bold text-oxblood text-sm font-tabular">Rp15.500</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 11: TOASTS
+  =========================================== -->
+  <section class="grid grid-cols-12 gap-8 py-8 hairline-b">
+    <div class="col-span-3 pr-6">
+      <span class="font-data text-xs text-oxblood uppercase font-medium">10 · Pemberitahuan</span>
+      <h2 class="font-headline text-2xl font-medium text-ink mt-1 mb-2">Notifikasi (Toasts)</h2>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        Pemberitahuan singkat berlatar <span class="font-data text-xs">paper-raised</span> dengan garis pembatas tebal di sisi kiri sesuai status: Sukses (Moss), Peringatan (Ochre), dan Galat (Oxblood).
+      </p>
+    </div>
+    <div class="col-span-9 grid grid-cols-3 gap-6">
+      
+      <!-- Toast Success -->
+      <div class="bg-paper-raised border-l-4 border-moss border-t border-r border-b border-rule rounded-sm p-4 flex items-start gap-3 shadow-none">
+        <div class="pt-0.5 text-moss">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" aria-hidden="true" class="lucide lucide-check w-4 h-4"><path d="M20 6 9 17l-5-5"></path></svg>
+        </div>
+        <div class="flex-1">
+          <p class="font-body text-sm font-medium text-ink leading-snug">
+            Buku berhasil dipinjam
+          </p>
+          <p class="font-data text-xs text-ink-muted mt-1 font-tabular">
+            Jatuh tempo: 26 Okt 2026 (14 hari)
+          </p>
+        </div>
+      </div>
+
+      <!-- Toast Warning -->
+      <div class="bg-paper-raised border-l-4 border-ochre border-t border-r border-b border-rule rounded-sm p-4 flex items-start gap-3 shadow-none">
+        <div class="pt-0.5 text-ochre">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="alert-triangle" aria-hidden="true" class="lucide lucide-alert-triangle w-4 h-4"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+        </div>
+        <div class="flex-1">
+          <p class="font-body text-sm font-medium text-ink leading-snug">
+            Batas peminjaman tersisa 1 buku
+          </p>
+          <p class="font-data text-xs text-ink-muted mt-1 font-tabular">
+            Kuota anggota reguler: maksimal 3 eksemplar
+          </p>
+        </div>
+      </div>
+
+      <!-- Toast Error -->
+      <div class="bg-paper-raised border-l-4 border-oxblood border-t border-r border-b border-rule rounded-sm p-4 flex items-start gap-3 shadow-none">
+        <div class="pt-0.5 text-oxblood">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x-circle" aria-hidden="true" class="lucide lucide-x-circle w-4 h-4"><circle cx="12" cy="12" r="10"></circle><path d="m15 9-6 6"></path><path d="m9 9 6 6"></path></svg>
+        </div>
+        <div class="flex-1">
+          <p class="font-body text-sm font-medium text-ink leading-snug">
+            Gagal memproses peminjaman
+          </p>
+          <p class="font-data text-xs text-oxblood mt-1 font-tabular">
+            Terdapat denda tertunggak melebihi Rp10.000
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SECTION 12: EMPTY STATE
+  =========================================== -->
+  <section class="grid grid-cols-12 gap-8 py-8">
+    <div class="col-span-3 pr-6">
+      <span class="font-data text-xs text-oxblood uppercase font-medium">11 · Kondisi Kosong</span>
+      <h2 class="font-headline text-2xl font-medium text-ink mt-1 mb-2">Kondisi Kosong (Empty State)</h2>
+      <p class="text-sm text-ink-muted leading-relaxed">
+        Satu kalimat lugas dalam tipografi headline Literata berpadu dengan tombol aksi *ghost*. Sesuai kaidah desain: tanpa ilustrasi kartun, tanpa maskot 3D, tenang dan fungsional.
+      </p>
+    </div>
+    <div class="col-span-9">
+      <div class="bg-paper-raised hairline-all rounded-sm p-12 text-center flex flex-col items-center justify-center space-y-4">
+        <span class="font-data text-xs text-ink-faint uppercase tracking-widest block">PORTAL ANGGOTA · PINJAMAN AKTIF</span>
+        <h3 class="font-headline text-3xl font-medium text-ink max-w-md">
+          Belum ada pinjaman.
+        </h3>
+        <p class="font-body text-sm text-ink-muted max-w-sm">
+          Semua buku telah dikembalikan tepat waktu. Jelajahi katalog pustaka untuk meminjam bacaan baru.
+        </p>
+        <div class="pt-2">
+          <button class="h-10 px-5 border border-rule-strong bg-paper text-ink font-body text-sm font-medium rounded hover:bg-paper-sunken transition-colors inline-flex items-center gap-2">
+            <span class="">Jelajahi katalog</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" aria-hidden="true" class="lucide lucide-arrow-right w-4 h-4"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer rules signature -->
+  <footer class="pt-8 hairline-t flex justify-between items-center text-xs font-data text-ink-muted">
+    <div class="">PUSTAKA EDITORIAL · SISTEM KOMPONEN V1</div>
+    <div class="">BAHAN: KERTAS (#F5F1E8) · TINTA (#1C1A16) · OXBLOOD (#7A2420)</div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+
+
+
+
+</body></html>

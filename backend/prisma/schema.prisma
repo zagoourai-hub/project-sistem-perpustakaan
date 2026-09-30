@@ -1,0 +1,353 @@
+generator client {
+  provider        = "prisma-client"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  extensions = [vector, pg_trgm]
+}
+
+enum Role {
+  ADMIN
+  LIBRARIAN
+  MEMBER
+}
+
+enum MemberType {
+  STUDENT
+  STAFF
+}
+
+enum MemberStatus {
+  ACTIVE
+  SUSPENDED
+  EXPIRED
+}
+
+enum ItemStatus {
+  AVAILABLE
+  ON_LOAN
+  ON_HOLD
+  LOST
+  DAMAGED
+  IN_REPAIR
+  WITHDRAWN
+}
+
+enum ItemSource {
+  PURCHASE
+  DONATION
+}
+
+enum FineType {
+  OVERDUE
+  LOST
+  DAMAGED
+}
+
+enum FineStatus {
+  UNPAID
+  PAID
+  WAIVED
+}
+
+enum HoldStatus {
+  WAITING
+  READY
+  FULFILLED
+  CANCELLED
+  EXPIRED
+}
+
+enum NotificationType {
+  CHECKOUT_CONFIRMATION
+  DUE_REMINDER
+  OVERDUE
+  HOLD_READY
+  HOLD_EXPIRED
+  FINE_ISSUED
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+  FAILED
+  SKIPPED
+}
+
+model User {
+  id                 String         @id @default(uuid(7))
+  email              String?        @unique
+  name               String
+  passwordHash       String
+  role               Role
+  mustChangePassword Boolean        @default(false)
+  isActive           Boolean        @default(true)
+  lastLoginAt        DateTime?
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  member             Member?
+  refreshTokens      RefreshToken[]
+}
+
+model RefreshToken {
+  id           String    @id @default(uuid(7))
+  userId       String
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash    String    @unique
+  expiresAt    DateTime
+  revokedAt    DateTime?
+  replacedById String?
+  createdAt    DateTime  @default(now())
+
+  @@index([userId])
+}
+
+model Member {
+  id             String         @id @default(uuid(7))
+  userId         String         @unique
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  memberCode     String         @unique
+  idNumber       String         @unique
+  type           MemberType
+  classOrMajor   String?
+  phone          String?
+  photoKey       String?
+  status         MemberStatus   @default(ACTIVE)
+  validUntil     DateTime       @db.Date
+  emailReminders Boolean        @default(true)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  loans          Loan[]
+  holds          Hold[]
+  notifications  Notification[]
+}
+
+model LoanPolicy {
+  id                    String     @id @default(uuid(7))
+  memberType            MemberType @unique
+  maxActiveLoans        Int
+  loanDays              Int
+  maxRenewals           Int
+  finePerDay            Int
+  maxFinePerLoan        Int
+  blockingFineThreshold Int
+  holdPickupDays        Int
+  maxActiveHolds        Int
+  updatedAt             DateTime   @updatedAt
+}
+
+model Holiday {
+  id   String   @id @default(uuid(7))
+  date DateTime @unique @db.Date
+  name String
+}
+
+model Publisher {
+  id    String @id @default(uuid(7))
+  name  String @unique
+  books Book[]
+}
+
+model Author {
+  id    String       @id @default(uuid(7))
+  name  String       @unique
+  books BookAuthor[]
+
+  @@index([name(ops: raw("gin_trgm_ops"))], type: Gin, map: "Author_name_trgm_idx")
+}
+
+model Subject {
+  id    String        @id @default(uuid(7))
+  name  String        @unique
+  books BookSubject[]
+}
+
+model ShelfLocation {
+  id    String @id @default(uuid(7))
+  code  String @unique
+  name  String
+  items Item[]
+}
+
+model Book {
+  id           String                   @id @default(uuid(7))
+  title        String
+  subtitle     String?
+  isbn13       String?                  @unique
+  isbn10       String?                  @unique
+  publisherId  String?
+  publisher    Publisher?               @relation(fields: [publisherId], references: [id])
+  year         Int?
+  language     String                   @default("id")
+  pages        Int?
+  ddc          String?
+  callNumber   String?
+  synopsis     String?
+  coverKey     String?
+  // kolom generated, dibuat di migrasi custom
+  searchVector Unsupported("tsvector")?
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
+  deletedAt    DateTime?
+  authors      BookAuthor[]
+  subjects     BookSubject[]
+  items        Item[]
+  holds        Hold[]
+  embedding    BookEmbedding?
+
+  @@index([searchVector], type: Gin)
+  @@index([title(ops: raw("gin_trgm_ops"))], type: Gin, map: "Book_title_trgm_idx")
+}
+
+model BookAuthor {
+  bookId   String
+  authorId String
+  position Int
+  book     Book   @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  author   Author @relation(fields: [authorId], references: [id])
+
+  @@id([bookId, authorId])
+}
+
+model BookSubject {
+  bookId    String
+  subjectId String
+  book      Book    @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  subject   Subject @relation(fields: [subjectId], references: [id])
+
+  @@id([bookId, subjectId])
+}
+
+model Item {
+  id              String         @id @default(uuid(7))
+  bookId          String
+  book            Book           @relation(fields: [bookId], references: [id])
+  barcode         String         @unique
+  shelfLocationId String?
+  shelfLocation   ShelfLocation? @relation(fields: [shelfLocationId], references: [id])
+  status          ItemStatus     @default(AVAILABLE)
+  condition       String?
+  source          ItemSource     @default(PURCHASE)
+  price           Int?
+  acquiredAt      DateTime       @default(now()) @db.Date
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  deletedAt       DateTime?
+  loans           Loan[]
+  holds           Hold[]
+
+  @@index([bookId])
+  @@index([status])
+}
+
+model Loan {
+  id             String    @id @default(uuid(7))
+  itemId         String
+  item           Item      @relation(fields: [itemId], references: [id])
+  // null setelah anonimisasi (retensi UU PDP)
+  memberId       String?
+  member         Member?   @relation(fields: [memberId], references: [id], onDelete: SetNull)
+  checkedOutAt   DateTime  @default(now())
+  dueAt          DateTime
+  returnedAt     DateTime?
+  renewCount     Int       @default(0)
+  checkedOutById String
+  checkedInById  String?
+  fines          Fine[]
+
+  @@index([memberId])
+  @@index([dueAt])
+}
+
+model Fine {
+  id           String        @id @default(uuid(7))
+  loanId       String
+  loan         Loan          @relation(fields: [loanId], references: [id])
+  type         FineType
+  amount       Int
+  paidAmount   Int           @default(0)
+  status       FineStatus    @default(UNPAID)
+  waivedReason String?
+  waivedById   String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  payments     FinePayment[]
+
+  @@unique([loanId, type])
+  @@index([status])
+}
+
+model FinePayment {
+  id           String   @id @default(uuid(7))
+  fineId       String
+  fine         Fine     @relation(fields: [fineId], references: [id])
+  amount       Int
+  receivedById String
+  paidAt       DateTime @default(now())
+}
+
+model Hold {
+  id        String     @id @default(uuid(7))
+  bookId    String
+  book      Book       @relation(fields: [bookId], references: [id])
+  memberId  String
+  member    Member     @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  status    HoldStatus @default(WAITING)
+  queuedAt  DateTime   @default(now())
+  readyAt   DateTime?
+  expiresAt DateTime?
+  itemId    String?
+  item      Item?      @relation(fields: [itemId], references: [id])
+
+  @@index([bookId, status, queuedAt])
+  @@index([memberId, status])
+}
+
+model Notification {
+  id        String             @id @default(uuid(7))
+  memberId  String
+  member    Member             @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  type      NotificationType
+  channel   String             @default("EMAIL")
+  payload   Json
+  status    NotificationStatus @default(PENDING)
+  error     String?
+  sentAt    DateTime?
+  readAt    DateTime?
+  createdAt DateTime           @default(now())
+
+  @@index([memberId, createdAt])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid(7))
+  actorId    String?
+  action     String
+  entityType String
+  entityId   String?
+  metadata   Json?
+  ip         String?
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([entityType, entityId])
+  @@index([actorId])
+}
+
+model Setting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}
+
+model BookEmbedding {
+  bookId      String                      @id
+  book        Book                        @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  embedding   Unsupported("vector(1536)")
+  model       String
+  contentHash String
+  updatedAt   DateTime                    @updatedAt
+}

@@ -1,0 +1,257 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Pustaka Editorial — tokens from the Stitch design-system profile
+ * (docs/design/DESIGN.md). Role names match the Stitch HTML classes, so
+ * `bg-surface-container-lowest`, `text-on-surface-variant`, `border-outline-variant`
+ * translate 1:1 from docs/design/screen/*.html.
+ *
+ * NOTE: `primary` and `secondary` are PROFILE roles (oxblood #5B0D0D, moss #4A6546),
+ * not shadcn's neutral secondary. Components added via the shadcn CLI must be
+ * re-themed to these roles before use.
+ */
+
+:root {
+  --surface: #fff8f1;
+  --surface-dim: #dfd9d2;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f9f3ec;
+  --surface-container: #f3ede6;
+  --surface-container-high: #ede7e0;
+  --surface-container-highest: #e8e2db;
+  --on-surface: #1d1b17;
+  --on-surface-variant: #564240;
+  --inverse-surface: #33302c;
+  --inverse-on-surface: #f6f0e9;
+  --outline: #89726f;
+  --outline-variant: #dcc0bd;
+
+  --primary: #5b0d0d;
+  --on-primary: #ffffff;
+  --primary-container: #7a2420;
+  --on-primary-container: #ff9086;
+  --primary-fixed: #ffdad6;
+
+  --secondary: #4a6546;
+  --on-secondary: #ffffff;
+  --secondary-container: #c9e8c1;
+  --on-secondary-container: #4e6a4a;
+
+  --tertiary: #422600;
+  --tertiary-container: #603a00;
+  --on-tertiary-container: #e7a148;
+  --tertiary-fixed: #ffddb9;
+
+  --error: #ba1a1a;
+  --error-container: #ffdad6;
+
+  --overlay-shadow: 0 8px 24px rgb(28 26 22 / 0.12);
+  --radius: 4px;
+}
+
+/* "Ruang baca malam" — not in the profile; derived from DESIGN.md dark-* tokens. */
+.dark {
+  --surface: #16140f;
+  --surface-dim: #110f0b;
+  --surface-container-lowest: #1e1b15;
+  --surface-container-low: #1a1813;
+  --surface-container: #211e18;
+  --surface-container-high: #26221b;
+  --surface-container-highest: #2c2820;
+  --on-surface: #ece6d8;
+  --on-surface-variant: #a39b8b;
+  --inverse-surface: #ece6d8;
+  --inverse-on-surface: #16140f;
+  --outline: #7a7263;
+  --outline-variant: #3a3429;
+
+  --primary: #d0685f;
+  --on-primary: #16140f;
+  --primary-container: #d0685f;
+  --on-primary-container: #16140f;
+  --primary-fixed: #3a1f1c;
+
+  --secondary: #8fb08a;
+  --on-secondary: #16140f;
+  --secondary-container: #2e3b2c;
+  --on-secondary-container: #8fb08a;
+
+  --tertiary: #e0a948;
+  --tertiary-container: #e0a948;
+  --on-tertiary-container: #e0a948;
+  --tertiary-fixed: #3a2c14;
+
+  --error: #ffb4ab;
+  --error-container: #4a1d1a;
+
+  --overlay-shadow: 0 8px 24px rgb(0 0 0 / 0.4);
+}
+
+@theme inline {
+  /* Profile roles */
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-variant: var(--surface-container-highest);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-inverse-surface: var(--inverse-surface);
+  --color-inverse-on-surface: var(--inverse-on-surface);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-primary-fixed: var(--primary-fixed);
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+  --color-tertiary-fixed: var(--tertiary-fixed);
+  --color-error: var(--error);
+  --color-error-container: var(--error-container);
+
+  /* shadcn aliases (names that don't collide with profile roles) */
+  --color-background: var(--surface);
+  --color-foreground: var(--on-surface);
+  --color-card: var(--surface-container-lowest);
+  --color-card-foreground: var(--on-surface);
+  --color-popover: var(--surface-container-lowest);
+  --color-popover-foreground: var(--on-surface);
+  --color-primary-foreground: var(--on-primary);
+  --color-secondary-foreground: var(--on-secondary);
+  --color-muted: var(--surface-container);
+  --color-muted-foreground: var(--on-surface-variant);
+  --color-accent: var(--surface-container-low);
+  --color-accent-foreground: var(--on-surface);
+  --color-destructive: var(--primary-container);
+  --color-border: var(--outline-variant);
+  --color-input: var(--outline);
+  --color-ring: var(--on-surface);
+  --color-sidebar: var(--surface-container-high);
+  --color-sidebar-foreground: var(--on-surface);
+  --color-sidebar-border: var(--outline-variant);
+
+  /* Type families (next/font variables set in app/layout.tsx) */
+  --font-display: var(--font-anton), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /* Type scale (DESIGN.md typography) — pair display/h* with font-display */
+  --text-display: 4.5rem;
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.01em;
+  --text-h1: 2.5rem;
+  --text-h1--line-height: 1.1;
+  --text-h2: 1.75rem;
+  --text-h2--line-height: 1.2;
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.3;
+  --text-book-title: 1.125rem;
+  --text-book-title--line-height: 1.3;
+  --text-book-title--font-weight: 600;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.6;
+  --text-body-md: 1rem;
+  --text-body-md--line-height: 1.55;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.5;
+  --text-label: 0.875rem;
+  --text-label--line-height: 1.2;
+  --text-label--font-weight: 500;
+  --text-data: 0.875rem;
+  --text-data--line-height: 1.4;
+  --text-data-lg: 2.5rem;
+  --text-data-lg--line-height: 1;
+  --text-data-lg--font-weight: 500;
+
+  /* Radius: 2px chips/slips, 4px everything else. Nothing larger (except pills). */
+  --radius-xs: 2px;
+  --radius-sm: 2px;
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+
+  /* Only overlays get a shadow. */
+  --shadow-sm: none;
+  --shadow-md: var(--overlay-shadow);
+  --shadow-lg: var(--overlay-shadow);
+  --shadow-xl: var(--overlay-shadow);
+  --shadow-overlay: var(--overlay-shadow);
+
+  --ease-editorial: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Small uppercase label above page titles: "KATALOG" over "Semua Koleksi". */
+@utility kicker {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Data in Plex Mono with tabular numerals: dates, barcodes, money, counts. */
+@utility data {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+@layer base {
+  * {
+    @apply border-outline-variant;
+  }
+  html {
+    @apply bg-surface text-on-surface font-sans antialiased;
+  }
+  body {
+    @apply bg-surface text-body-md;
+  }
+  ::selection {
+    @apply bg-primary text-on-primary;
+  }
+  /* DESIGN.md: focus = 2px ink outline, offset 2px. */
+  :focus-visible {
+    outline: 2px solid var(--on-surface);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Print only the element marked .print-area (member card, barcode labels). */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}

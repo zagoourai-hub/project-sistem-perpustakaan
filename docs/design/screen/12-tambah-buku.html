@@ -1,0 +1,333 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&amp;family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-error-container":"#93000a","on-tertiary":"#ffffff","tertiary":"#422600","on-primary-fixed-variant":"#802824","on-secondary":"#ffffff","tertiary-fixed":"#ffddb9","secondary":"#4a6546","surface-bright":"#fff8f1","secondary-fixed":"#ccebc4","surface-dim":"#dfd9d2","on-secondary-fixed":"#072108","on-primary-fixed":"#410003","on-surface":"#1d1b17","on-tertiary-fixed-variant":"#663e00","on-error":"#ffffff","on-secondary-container":"#4e6a4a","on-tertiary-container":"#e7a148","inverse-primary":"#ffb4ac","inverse-on-surface":"#f6f0e9","primary-fixed-dim":"#ffb4ac","tertiary-container":"#603a00","surface-container-highest":"#e8e2db","outline":"#89726f","on-surface-variant":"#564240","on-primary":"#ffffff","error-container":"#ffdad6","outline-variant":"#dcc0bd","secondary-fixed-dim":"#b0cfa9","surface-variant":"#e8e2db","on-background":"#1d1b17","surface-container-high":"#ede7e0","surface-container-low":"#f9f3ec","inverse-surface":"#33302c","primary-fixed":"#ffdad6","on-primary-container":"#ff9086","on-tertiary-fixed":"#2b1700","background":"#fff8f1","tertiary-fixed-dim":"#ffb963","surface-container":"#f3ede6","primary":"#5b0d0d","secondary-container":"#c9e8c1","surface":"#fff8f1","surface-container-lowest":"#ffffff","on-secondary-fixed-variant":"#334d30","surface-tint":"#9f3f39","error":"#ba1a1a","primary-container":"#7a2420"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"lg":"24px","sm":"8px","2xl":"64px","xs":"4px","xl":"40px","3xl":"96px","md":"16px"},"fontFamily":{"body-md":["Work Sans"],"label":["Work Sans"],"h3":["Anton"],"display":["Anton"],"h1":["Anton"],"book-title":["Work Sans"],"body-lg":["Work Sans"],"data-lg":["IBM Plex Mono"],"kicker":["Work Sans"],"data":["IBM Plex Mono"],"body-sm":["Work Sans"],"h2":["Anton"]},"fontSize":{"body-md":["1rem",{"lineHeight":"1.55","fontWeight":"400"}],"label":["0.875rem",{"lineHeight":"1.2","fontWeight":"500"}],"h3":["1.25rem",{"lineHeight":"1.3","fontWeight":"400"}],"display":["4.5rem",{"lineHeight":"1.05","letterSpacing":"-0.01em","fontWeight":"400"}],"h1":["2.5rem",{"lineHeight":"1.1","letterSpacing":"0em","fontWeight":"400"}],"book-title":["1.125rem",{"lineHeight":"1.3","fontWeight":"600"}],"body-lg":["1.125rem",{"lineHeight":"1.6","fontWeight":"400"}],"data-lg":["2.5rem",{"lineHeight":"1","fontWeight":"500"}],"kicker":["0.75rem",{"lineHeight":"1.2","letterSpacing":"0.12em","fontWeight":"600"}],"data":["0.875rem",{"lineHeight":"1.4","fontWeight":"400"}],"body-sm":["0.875rem",{"lineHeight":"1.5","fontWeight":"400"}],"h2":["1.75rem",{"lineHeight":"1.2","fontWeight":"400"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-[232px] bg-surface-container-high border-r border-outline-variant z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="h-14 px-md flex flex-col justify-center border-b border-outline-variant"><div class="flex items-baseline gap-xs"><span class="font-h3 text-h3 tracking-tight text-primary leading-none">PUSTAKA</span><span class="font-kicker text-kicker text-on-surface-variant uppercase tracking-wider">KONSOL</span></div><span class="font-data text-[10px] text-on-surface-variant truncate">SMA Nusantara</span></div><nav class="flex flex-col py-xs" data-active-classes="bg-surface text-primary border-l-2 border-primary font-semibold"><a class="flex items-center gap-sm px-md py-xs text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label text-label transition-colors" data-path="dasbor" href="#"><span class="material-symbols-outlined text-[18px]">dashboard</span><span class="">Dasbor</span></a><a class="flex items-center gap-sm px-md py-xs text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label text-label transition-colors" data-path="sirkulasi" href="#"><span class="material-symbols-outlined text-[18px]">sync_alt</span><span class="">Sirkulasi</span></a><a aria-current="page" class="flex items-center gap-sm px-md py-xs transition-colors text-on-surface border-l-2 border-primary-container font-semibold" data-path="katalog" href="#"><span class="material-symbols-outlined text-[18px] text-primary-container">menu_book</span><span class="">Katalog</span></a><a class="flex items-center gap-sm px-md py-xs text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label text-label transition-colors" data-path="anggota" href="#"><span class="material-symbols-outlined text-[18px]">group</span><span class="">Anggota</span></a><a class="flex items-center gap-sm px-md py-xs text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label text-label transition-colors" data-path="reservasi" href="#"><span class="material-symbols-outlined text-[18px]">bookmark</span><span class="">Reservasi</span></a><a class="flex items-center gap-sm px-md py-xs text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label text-label transition-colors" data-path="denda" href="#"><span class="material-symbols-outlined text-[18px]">receipt_long</span><span class="">Denda</span></a><a class="flex items-center gap-sm px-md py-xs text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label text-label transition-colors" data-path="laporan" href="#"><span class="material-symbols-outlined text-[18px]">bar_chart</span><span class="">Laporan</span></a><a class="flex items-center gap-sm px-md py-xs text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label text-label transition-colors" data-path="pengaturan" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span class="">Pengaturan</span></a></nav></div><div class="p-md border-t border-outline-variant bg-surface-container-high"><div class="flex items-center justify-between"><div class="flex flex-col min-w-0 pr-xs"><span class="font-label text-label text-on-surface font-semibold truncate">Rina Wulandari</span><span class="font-data text-[11px] text-on-surface-variant uppercase tracking-wider">Pustakawan</span></div><a class="p-xs text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center rounded-DEFAULT" data-path="keluar" href="#" title="Keluar"><span class="material-symbols-outlined text-[20px]">logout</span></a></div></div></aside><div class="pl-[232px]"><header class="fixed top-0 left-[232px] right-0 h-14 bg-surface-container border-b border-outline-variant z-40 px-lg flex items-center justify-between"><div class="flex-1 max-w-xl pr-lg"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-sm text-on-surface-variant text-[18px]">search</span><input class="w-full h-8 pl-8 pr-md bg-surface-container-lowest border border-outline-variant rounded-DEFAULT font-data text-data text-on-surface placeholder:text-on-surface-variant/70 focus:outline-none focus:border-on-surface" placeholder="Cari judul, barcode, atau anggota... [/]" type="text"></div></div><div class="flex items-center gap-lg"><div class="font-data text-data text-on-surface-variant hidden md:block">Senin, 28 Sep 2026</div><div class="h-4 w-[1px] bg-outline-variant hidden md:block"></div><button class="relative text-on-surface-variant hover:text-on-surface flex items-center justify-center" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute -top-1 -right-1 min-w-[14px] h-[14px] px-[2px] bg-primary text-on-primary font-data text-[9px] flex items-center justify-center rounded-DEFAULT font-semibold leading-none">3</span></button><div class="flex items-center gap-sm pl-xs border-l border-outline-variant"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-14 min-h-screen bg-surface w-full px-lg py-md"><div class="flex flex-col w-full">
+<!-- PAGE HEADER & BREADCRUMB -->
+<header class="w-full mb-6">
+<div class="flex items-center gap-xs font-data text-[12px] text-on-surface-variant mb-1 tracking-tight">
+<a class="hover:text-on-surface transition-colors" href="#">Katalog</a>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-medium">Tambah Buku</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md pb-4">
+<div>
+<div class="font-kicker text-kicker uppercase tracking-[0.14em] text-on-surface-variant mb-0.5">Katalog Buku</div>
+<h1 class="font-h1 text-h1 text-on-surface uppercase tracking-tight leading-none m-0">Tambah Buku</h1>
+</div>
+<div class="flex items-center gap-sm self-start md:self-end">
+<button class="h-10 px-md bg-surface-container-lowest text-on-surface font-label text-label border border-outline-variant rounded-DEFAULT hover:bg-surface-container-high transition-colors" type="button">
+          Batal
+        </button>
+<button class="h-10 px-md bg-surface-container-lowest text-on-surface font-label text-label border border-outline rounded-DEFAULT hover:bg-surface-container-high transition-colors" type="button">
+          Simpan Draf
+        </button>
+<button class="h-10 px-lg bg-primary text-on-primary font-label text-label font-medium rounded-DEFAULT hover:bg-primary-container transition-colors flex items-center gap-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_add</span>
+<span class="">Simpan &amp; Buat Eksemplar</span>
+</button>
+</div>
+</div>
+<!-- Crisp 2px Solid Ink Rule Divider -->
+<div class="w-full h-[2px] bg-on-surface"></div>
+</header>
+<!-- STEP 1 — ISBN LOOKUP STRIP -->
+<section class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-md mb-6">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-kicker text-kicker tracking-[0.14em] text-on-surface-variant uppercase">Langkah 1 — Pencarian ISBN</span>
+<span class="font-data text-[11px] text-on-surface-variant uppercase tracking-wider">Open Library API v2</span>
+</div>
+<div class="flex flex-col sm:flex-row items-stretch gap-sm">
+<div class="relative flex-1 flex items-center">
+<span class="absolute left-md font-data text-label text-on-surface-variant select-none pointer-events-none">ISBN</span>
+<input class="w-full h-14 pl-16 pr-12 bg-surface-container-lowest border border-outline rounded-DEFAULT font-data text-[18px] text-on-surface tracking-wider focus:outline-none focus:outline-[2px] focus:outline-on-surface focus:outline-offset-2 tabular-nums" id="isbn-scanner-input" placeholder="Ketik ISBN atau scan barcode..." type="text" value="9793062797">
+<button class="absolute right-xs w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-on-surface rounded-DEFAULT transition-colors" title="Buka Kamera Barcode Scanner" type="button">
+<span class="material-symbols-outlined text-[22px]">barcode_scanner</span>
+</button>
+</div>
+<button class="h-14 px-lg bg-surface-container-high border border-outline text-on-surface font-label text-label font-medium rounded-DEFAULT hover:bg-surface-container-highest transition-colors flex items-center justify-center gap-xs whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-[18px]">manage_search</span>
+<span class="">Cari Data</span>
+</button>
+</div>
+<!-- Status Line -->
+<div class="flex items-center gap-xs mt-sm text-secondary font-label text-[13px]">
+<span class="material-symbols-outlined text-[16px] leading-none" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<span class="">Data ditemukan di Open Library — periksa dan lengkapi sebelum menyimpan.</span>
+</div>
+</section>
+<!-- MAIN TWO-COLUMN FORM LAYOUT -->
+<div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-0 border-t border-outline-variant">
+<!-- LEFT COLUMN: FORM METADATA KATALOG (8 cols) -->
+<div class="lg:col-span-8 lg:pr-8 py-6 flex flex-col gap-5">
+<div class="flex items-baseline justify-between border-b border-outline-variant pb-2">
+<span class="font-kicker text-kicker uppercase tracking-widest text-on-surface-variant">Langkah 2 — Metadata Bibliografi</span>
+<span class="font-data text-[11px] text-on-surface-variant">* Bidang wajib diisi</span>
+</div>
+<!-- Row 1: Judul & Subjudul -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-md">
+<div class="md:col-span-8 flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium flex items-center justify-between" for="judul-utama">
+<span class="">Judul Buku <span class="text-error">*</span></span>
+<span class="font-data text-[11px] text-on-surface-variant">Indeks Utama</span>
+</label>
+<input class="h-10 px-3 bg-surface-container-lowest border border-outline rounded-DEFAULT font-body-md text-body-md text-on-surface outline-none outline-[2px] outline-on-surface outline-offset-2 font-normal" id="judul-utama" type="text" value="Laskar Pelangi">
+</div>
+<div class="md:col-span-4 flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium" for="subjudul">Subjudul</label>
+<input class="h-10 px-3 bg-surface-container-lowest border border-outline rounded-DEFAULT font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant/60 focus:outline-none focus:border-on-surface" id="subjudul" placeholder="Opsional..." type="text">
+</div>
+</div>
+<!-- Row 2: Pengarang -->
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium">Pengarang / Penulis <span class="text-error">*</span></label>
+<div class="flex flex-wrap items-center gap-xs p-1.5 bg-surface-container-lowest border border-outline rounded-DEFAULT min-h-10">
+<span class="inline-flex items-center gap-1 bg-surface-container-high text-on-surface font-data text-[13px] px-2.5 py-1 rounded-[2px] border border-outline-variant">
+<span class="">Andrea Hirata</span>
+<button class="text-on-surface-variant hover:text-error ml-1 leading-none font-sans font-bold" title="Hapus pengarang" type="button">×</button>
+</span>
+<button class="h-7 px-2.5 border border-dashed border-outline text-on-surface-variant hover:text-on-surface hover:border-on-surface font-label text-[12px] rounded-[2px] flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span>
+<span class="">Tambah pengarang</span>
+</button>
+</div>
+</div>
+<!-- Row 3: Penerbit & Tahun Terbit -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium" for="penerbit">Penerbit <span class="text-error">*</span></label>
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 bg-surface-container-lowest border border-outline rounded-DEFAULT font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:border-on-surface" id="penerbit">
+<option selected="" value="bentang">Bentang Pustaka</option>
+<option value="gramedia">Gramedia Pustaka Utama</option>
+<option value="mizan">Mizan</option>
+<option value="balai">Balai Pustaka</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium" for="tahun">Tahun Terbit <span class="text-error">*</span></label>
+<input class="h-10 px-3 bg-surface-container-lowest border border-outline rounded-DEFAULT font-data text-data text-on-surface tabular-nums focus:outline-none focus:border-on-surface" id="tahun" type="text" value="2005">
+</div>
+</div>
+<!-- Row 4: ISBN-13 & ISBN-10 -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium" for="isbn13">ISBN-13</label>
+<input class="h-10 px-3 bg-surface-container-lowest border border-outline rounded-DEFAULT font-data text-data text-on-surface tabular-nums focus:outline-none focus:border-on-surface" id="isbn13" type="text" value="9789793062792">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium" for="isbn10">ISBN-10</label>
+<input class="h-10 px-3 bg-surface-container-lowest border border-outline rounded-DEFAULT font-data text-data text-on-surface tabular-nums focus:outline-none focus:border-on-surface" id="isbn10" type="text" value="9793062797">
+</div>
+</div>
+<!-- Row 5: Bahasa & Jumlah Halaman -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium" for="bahasa">Bahasa</label>
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 bg-surface-container-lowest border border-outline rounded-DEFAULT font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:border-on-surface" id="bahasa">
+<option selected="" value="id">Indonesia</option>
+<option value="en">Inggris</option>
+<option value="ar">Arab</option>
+<option value="jv">Jawa</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium" for="halaman">Jumlah Halaman</label>
+<div class="relative flex items-center">
+<input class="w-full h-10 px-3 pr-20 bg-surface-container-lowest border border-outline rounded-DEFAULT font-data text-data text-on-surface tabular-nums focus:outline-none focus:border-on-surface" id="halaman" type="text" value="529">
+<span class="absolute right-3 font-data text-[12px] text-on-surface-variant select-none pointer-events-none">halaman</span>
+</div>
+</div>
+</div>
+<!-- Row 6: DDC & Nomor Panggil -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium" for="ddc">Klasifikasi DDC <span class="text-error">*</span></label>
+<input class="h-10 px-3 bg-surface-container-lowest border border-outline rounded-DEFAULT font-data text-data text-on-surface tabular-nums focus:outline-none focus:border-on-surface" id="ddc" type="text" value="899.221">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium" for="no-panggil">Nomor Panggil (Call Number) <span class="text-error">*</span></label>
+<div class="flex items-center gap-xs">
+<input class="flex-1 h-10 px-3 bg-surface-container-lowest border border-outline rounded-DEFAULT font-data text-data text-on-surface font-medium tabular-nums focus:outline-none focus:border-on-surface" id="no-panggil" type="text" value="899.221 HIR l">
+<span class="px-2 py-1 bg-surface-container-high border border-outline-variant font-data text-[11px] text-on-surface rounded-[2px] whitespace-nowrap">Rak Fiksi</span>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Otomatis dari DDC + 3 huruf pengarang + 1 huruf judul kecil</span>
+</div>
+</div>
+<!-- Row 7: Subjek / Tagging -->
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium">Subjek / Topik Terkait</label>
+<div class="flex flex-wrap items-center gap-xs p-1.5 bg-surface-container-lowest border border-outline rounded-DEFAULT min-h-10">
+<span class="inline-flex items-center gap-1 bg-surface-container-high text-on-surface font-data text-[12px] px-2.5 py-1 rounded-[2px] border border-outline-variant">
+<span class="">Fiksi Indonesia</span>
+<button class="text-on-surface-variant hover:text-error ml-1 font-sans font-bold leading-none" type="button">×</button>
+</span>
+<span class="inline-flex items-center gap-1 bg-surface-container-high text-on-surface font-data text-[12px] px-2.5 py-1 rounded-[2px] border border-outline-variant">
+<span class="">Pendidikan</span>
+<button class="text-on-surface-variant hover:text-error ml-1 font-sans font-bold leading-none" type="button">×</button>
+</span>
+<button class="h-7 px-2.5 border border-dashed border-outline text-on-surface-variant hover:text-on-surface hover:border-on-surface font-label text-[12px] rounded-[2px] flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span>
+<span class="">Tambah subjek</span>
+</button>
+</div>
+</div>
+<!-- Row 8: Sinopsis -->
+<div class="flex flex-col gap-xs">
+<div class="flex items-center justify-between">
+<label class="font-label text-label text-on-surface font-medium" for="sinopsis">Sinopsis Ringkas</label>
+<span class="font-data text-[11px] text-on-surface-variant tabular-nums">412 / 2000</span>
+</div>
+<textarea class="w-full p-3 bg-surface-container-lowest border border-outline rounded-DEFAULT font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-on-surface leading-relaxed resize-none" id="sinopsis" rows="5">Kisah sepuluh siswa miskin di SD Muhammadiyah Gantong, Belitung, yang berjuang bersama-sama memperjuangkan hak belajar di tengah keterbatasan fasilitas dan hegemoni tambang timah PN Timah. Menggambarkan keteguhan Bu Muslimah dan Pak Harfan mendidik anak-anak pulau dalam keterbatasan mutlak.</textarea>
+</div>
+<!-- Bottom Desk Note -->
+
+</div>
+<!-- RIGHT COLUMN: STICKY SIDEBAR (4 cols) -->
+<aside class="lg:col-span-4 lg:pl-8 lg:border-l border-outline-variant py-6 flex flex-col gap-6">
+<!-- SECTION 1: SAMPUL BUKU -->
+<section class="flex flex-col gap-sm">
+<div class="flex items-center justify-between border-b border-outline-variant pb-1.5">
+<span class="font-kicker text-kicker uppercase tracking-widest text-on-surface-variant">Sampul Buku</span>
+<span class="font-data text-[11px] text-on-surface-variant">Rasio 2:3</span>
+</div>
+<div class="flex flex-col sm:flex-row lg:flex-col items-center gap-md">
+<!-- Cover Preview Box -->
+<div class="w-[170px] h-[250px] bg-surface-container-low border border-dashed border-outline rounded-DEFAULT p-2 flex flex-col justify-between items-center relative overflow-hidden group">
+<img class="w-full h-full object-cover rounded-DEFAULT" data-alt="Editorial book cover of Laskar Pelangi by Andrea Hirata. Vintage literary design, textured cream paper background with minimalist typography and soft watercolor depiction of Belitung coastal landscape and rainbow arch." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiYL-bWEtqBQFURW1n_hxe5fP52SBn0rd1wUFfqUHCtMfrQWzQlGLPGHJ_1HJZ57o1YDMlbWKDLUjSd2_DqdZlfiDKNv71YwMWD15XwBY-x49S0JRSsRmwCEnY_Cnx3JyrBxKeee1y5JFqEA8tDBz2Y-unIDjliIMWRncd0Li9sOJv-DEJoVw3vM3GZxqAdK4EBPuHDSV51pduPStxy6gBj3G40a2Q5FnOscmHWUL9a86qduODSeqlSA">
+<!-- Overlay controls -->
+<div class="absolute inset-x-2 bottom-2 bg-surface-container-lowest/95 border border-outline-variant py-1 px-2 flex items-center justify-around rounded-DEFAULT">
+<button class="font-label text-[12px] text-on-surface underline hover:text-primary transition-colors" type="button">Ganti</button>
+<span class="text-outline-variant">·</span>
+<button class="font-label text-[12px] text-error hover:underline transition-colors" type="button">Hapus</button>
+</div>
+</div>
+<div class="flex flex-col gap-xs text-center lg:text-left">
+<span class="font-data text-[11px] text-on-surface-variant">Pratilik sampul dari Open Library repository.</span>
+<span class="font-data text-[11px] text-on-surface-variant uppercase">JPG, PNG, WebP · Maks. 2 MB</span>
+<div class="mt-1">
+<label class="inline-flex items-center gap-1 cursor-pointer font-label text-[12px] text-on-surface font-semibold hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">upload_file</span>
+<span class="">Unggah berkas baru</span>
+<input accept="image/*" class="hidden" type="file">
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Hairline Rule Separator -->
+<div class="w-full h-[1px] bg-outline-variant"></div>
+<!-- SECTION 2: EKSEMPLAR FISIK -->
+<section class="flex flex-col gap-md">
+<div class="flex items-center justify-between border-b border-outline-variant pb-1.5">
+<span class="font-kicker text-kicker uppercase tracking-widest text-on-surface-variant">Eksemplar Fisik</span>
+<span class="font-data text-[11px] text-primary font-semibold">Wajib Diselesaikan</span>
+</div>
+<!-- Field 1: Jumlah Eksemplar -->
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium flex items-center justify-between" for="jml-eksemplar">
+<span class="">Jumlah Eksemplar</span>
+<span class="font-data text-[11px] text-on-surface-variant">Buku Baru</span>
+</label>
+<div class="flex items-center">
+<input class="w-full h-10 px-3 bg-surface-container-lowest border border-outline rounded-DEFAULT font-data text-data text-on-surface tabular-nums focus:outline-none focus:border-on-surface" id="jml-eksemplar" max="50" min="1" type="number" value="3">
+</div>
+</div>
+<!-- Field 2: Lokasi Rak (ERROR STATE) -->
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium flex items-center justify-between" for="lokasi-rak">
+<span class="">Lokasi Rak <span class="text-error">*</span></span>
+<span class="font-data text-[11px] text-error font-medium">Status: Belum Terpilih</span>
+</label>
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 bg-surface-container-lowest border-[1.5px] border-error text-error rounded-DEFAULT font-body-sm text-body-sm appearance-none focus:outline-none" id="lokasi-rak">
+<option selected="" value="">-- Pilih Rak --</option>
+<option value="rak-a1">Rak A-01 (Koleksi Referensi)</option>
+<option value="rak-b04">Rak B-04 (Sastra &amp; Fiksi)</option>
+<option value="rak-c02">Rak C-02 (Sains &amp; Terapan)</option>
+<option value="rak-d08">Rak D-08 (Sejarah &amp; Biografi)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-error pointer-events-none text-[18px]">error</span>
+</div>
+<span class="font-body-sm text-[12px] text-error flex items-center gap-1 font-medium">
+<span class="">⚠</span>
+<span class="">Lokasi rak wajib diisi sebelum mencetak barcode.</span>
+</span>
+</div>
+<!-- Field 3: Sumber Pengadaan -->
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium" for="sumber-pengadaan">Sumber Pengadaan</label>
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 bg-surface-container-lowest border border-outline rounded-DEFAULT font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:border-on-surface" id="sumber-pengadaan">
+<option selected="" value="pembelian">Pembelian Rutin APBS</option>
+<option value="hibah">Hibah / Sumbangan Alumni</option>
+<option value="droping">Droping Kemendikbud</option>
+<option value="tukar">Tukar Menukar Antar-Pustaka</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Field 4: Harga Per Eksemplar -->
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium" for="harga">Harga Per Eksemplar</label>
+<input class="h-10 px-3 bg-surface-container-lowest border border-outline rounded-DEFAULT font-data text-data text-on-surface tabular-nums focus:outline-none focus:border-on-surface" id="harga" type="text" value="Rp89.000">
+</div>
+<!-- Field 5: Kondisi Fisik -->
+<div class="flex flex-col gap-xs">
+<label class="font-label text-label text-on-surface font-medium" for="kondisi">Kondisi Fisik</label>
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 bg-surface-container-lowest border border-outline rounded-DEFAULT font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:border-on-surface" id="kondisi">
+<option selected="" value="baik">Baik (Buku Baru/Utuh)</option>
+<option value="sedang">Sedang (Halaman Komplit)</option>
+<option value="rusak_ringan">Perlu Penguatan Jilid</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Barcode Generator Preview Box -->
+<div class="bg-surface-container-high border border-outline-variant p-3 rounded-DEFAULT flex flex-col gap-xs">
+<div class="flex items-center justify-between">
+<span class="font-kicker text-kicker uppercase tracking-wider text-on-surface">Barcode Otomatis</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">qr_code_2</span>
+</div>
+<div class="font-data text-[12px] text-on-surface bg-surface-container-lowest border border-outline-variant p-2 rounded-DEFAULT leading-relaxed break-all select-all">
+            PST-2026-000145<br>
+            PST-2026-000146<br>
+            PST-2026-000147
+          </div>
+<span class="font-data text-[11px] text-on-surface-variant">Barcode diaktifkan serentak saat formulir disimpan.</span>
+</div>
+<!-- Print Checkbox -->
+<label class="flex items-start gap-sm cursor-pointer select-none pt-1">
+<input checked="" class="mt-1 h-4 w-4 rounded-DEFAULT border-outline text-primary focus:ring-0 accent-primary cursor-pointer" type="checkbox">
+<span class="font-label text-[13px] text-on-surface leading-snug">
+            Cetak label punggung buku &amp; kartu barcode langsung setelah disimpan
+          </span>
+</label>
+</section>
+<!-- ACTION FOOTER IN SIDEBAR (Desktop Shortcut reminder) -->
+<div class="border-t border-outline-variant pt-4 flex flex-col gap-2">
+
+<div class="flex items-center justify-between text-on-surface-variant font-data text-[11px]">
+<span class="">Shortcut: <kbd class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant rounded-[2px] text-on-surface">Ctrl</kbd> + <kbd class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant rounded-[2px] text-on-surface">S</kbd></span>
+<span class="">Batal: <kbd class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant rounded-[2px] text-on-surface">Esc</kbd></span>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<script>
+  // Simple micro-interaction for barcode scanner input hotkey focus
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+      e.preventDefault();
+      alert('Validasi: Silakan pilih "Lokasi Rak" terlebih dahulu sebelum menyimpan data eksemplar.');
+      const rackSelect = document.getElementById('lokasi-rak');
+      if (rackSelect) rackSelect.focus();
+    }
+  });
+</script></main></div>
+
+</body></html>

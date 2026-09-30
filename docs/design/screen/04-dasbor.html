@@ -1,0 +1,673 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="web_dashboard" name="shell-type">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+    }
+    ::-webkit-scrollbar { display: none; }
+    .tnum { font-variant-numeric: tabular-nums; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#F5F1E8",
+            "background": "#F5F1E8",
+            "on-surface": "#1C1A16",
+            "on-background": "#1C1A16",
+            "surface-sidebar": "#EDE7DA",
+            "surface-container-high": "#EDE7DA",
+            "surface-container-low": "#FAF7F2",
+            "outline-variant": "#D9D1C1",
+            "outline": "#89726F",
+            "ink-muted": "#5E584D",
+            "primary": "#7A2420",
+            "primary-container": "#5B0D0D",
+            "on-primary": "#FFFFFF",
+            "ochre": "#A66A12",
+            "ochre-border": "#C48226"
+          },
+          fontFamily: {
+            "h1": ["Anton", "sans-serif"],
+            "h2": ["Anton", "sans-serif"],
+            "body-md": ["Work Sans", "sans-serif"],
+            "body-sm": ["Work Sans", "sans-serif"],
+            "label": ["Work Sans", "sans-serif"],
+            "data": ["IBM Plex Mono", "monospace"],
+            "data-lg": ["IBM Plex Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#F5F1E8] font-body-md text-[#1C1A16] antialiased min-h-screen selection:bg-[#7A2420] selection:text-white">
+<!-- SIDEBAR (Sunken Paper #EDE7DA, 232px) -->
+<aside class="fixed left-0 top-0 bottom-0 w-[232px] bg-[#EDE7DA] border-r border-[#D9D1C1] z-50 flex flex-col justify-between">
+<div class="flex flex-col">
+<div class="h-16 px-5 border-b border-[#D9D1C1] flex flex-col justify-center">
+<div class="flex items-baseline justify-between">
+<span class="font-h1 text-[26px] tracking-normal uppercase text-[#1C1A16] leading-none">Pustaka</span>
+<span class="font-data text-[11px] tracking-wider uppercase text-[#5E584D] font-medium">Konsol Staf</span>
+</div>
+</div>
+<nav class="flex flex-col py-2">
+<!-- Dasbor: Transparent background with crisp 2px oxblood border on the left edge, ink text -->
+<a aria-current="page" class="group flex items-center h-10 px-5 border-l-2 border-[#7A2420] bg-transparent text-[#1C1A16] font-semibold transition-colors" data-path="dasbor" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#7A2420]">dashboard</span>
+<span class="text-sm">Dasbor</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="sirkulasi" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">sync_alt</span>
+<span class="">Sirkulasi</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="katalog" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">menu_book</span>
+<span class="">Katalog</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="anggota" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">badge</span>
+<span class="">Anggota</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="reservasi" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">bookmark_border</span>
+<span class="">Reservasi</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="denda" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">payments</span>
+<span class="">Denda</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="laporan" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">bar_chart</span>
+<span class="">Laporan</span>
+</a>
+<a class="group flex items-center h-10 px-5 text-sm font-normal text-[#5E584D] hover:text-[#1C1A16] hover:bg-[#E5DFC2]/40 transition-colors" data-path="pengaturan" href="#">
+<span class="material-symbols-outlined text-[19px] mr-3 text-[#89726F] group-hover:text-[#1C1A16]">settings</span>
+<span class="">Pengaturan</span>
+</a>
+</nav>
+</div>
+<div class="p-4 border-t border-[#D9D1C1] bg-[#EDE7DA]">
+<div class="flex items-center justify-between">
+<div class="flex flex-col min-w-0 mr-2">
+<span class="text-sm font-semibold text-[#1C1A16] truncate">Rina Wulandari</span>
+<span class="font-data text-[11px] text-[#5E584D] truncate">Pustakawan</span>
+</div>
+<a class="p-1 rounded text-[#5E584D] hover:text-[#7A2420] transition-colors flex items-center justify-center" data-path="logout" href="#" title="Keluar Konsol">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- MAIN WRAPPER -->
+<div class="pl-[232px] min-h-screen flex flex-col bg-[#F5F1E8]">
+<!-- TOP BAR -->
+<header class="fixed top-0 left-[232px] right-0 h-16 bg-[#F5F1E8] border-b border-[#D9D1C1] z-40 px-8 flex items-center justify-between">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#89726F] text-[18px]">search</span>
+<input class="w-full h-9 pl-9 pr-10 bg-[#FAF7F2] border border-[#D9D1C1] rounded-[2px] font-data text-xs text-[#1C1A16] placeholder:text-[#89726F] focus:outline-none focus:border-[#1C1A16] focus:ring-0 transition-all" placeholder="Cari judul, barcode, atau anggota…" type="text">
+<span class="absolute right-3 top-1/2 -translate-y-1/2 font-data text-[10px] px-1 py-0.2 border border-[#D9D1C1] rounded-[2px] bg-[#F5F1E8] text-[#5E584D]">/</span>
+</div>
+</div>
+<div class="flex items-center gap-6 ml-6">
+<div class="font-data text-xs text-[#1C1A16] border-r border-[#D9D1C1] pr-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-[#89726F] text-[18px]">calendar_today</span>
+<span class="">Senin, 28 Sep 2026</span>
+</div>
+<a class="relative p-1 text-[#5E584D] hover:text-[#1C1A16] transition-colors flex items-center justify-center" data-path="notifikasi" href="#">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-0 right-0 w-4 h-4 bg-[#7A2420] text-white font-data text-[10px] font-semibold flex items-center justify-center rounded-full leading-none">3</span>
+</a>
+<div class="w-8 h-8 rounded-full bg-[#7A2420] flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[18px]">person</span>
+</div>
+</div>
+</header>
+<!-- CONTENT BODY (pt-16 for header + 32px vertical gap) -->
+<main class="relative pt-16 w-full flex-1 bg-[#F5F1E8] px-8 pb-12">
+<div class="flex flex-col w-full text-[#1C1A16] pt-8">
+<!-- 1. PAGE HEADER (Exactly 32px down from top bar) -->
+<header class="flex flex-col w-full">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
+<div class="flex flex-col">
+<span class="font-data text-[11px] uppercase tracking-widest text-[#5E584D] font-medium">HARI INI</span>
+<h1 class="font-h1 text-[44px] tracking-normal uppercase leading-none text-[#1C1A16] mt-1.5">DASBOR</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="h-9 px-4 bg-[#FAF7F2] border border-[#D9D1C1] hover:border-[#1C1A16] text-[#1C1A16] font-label text-xs font-semibold flex items-center gap-2 transition-colors rounded-[2px]" type="button">
+<span class="">Pengembalian</span>
+<span class="font-data text-[11px] px-1.5 py-0.5 border border-[#D9D1C1] bg-[#F5F1E8] rounded-[2px] text-[#5E584D]">F3</span>
+</button>
+<button class="h-9 px-4 bg-[#7A2420] hover:bg-[#5B0D0D] text-white font-label text-xs font-semibold flex items-center gap-2 transition-colors rounded-[2px]" type="button">
+<span class="material-symbols-outlined text-[16px]">sync_alt</span>
+<span class="">Buka Sirkulasi</span>
+<span class="font-data text-[11px] px-1.5 py-0.5 border border-white/20 bg-white/10 text-white rounded-[2px]">F2</span>
+</button>
+</div>
+</div>
+<!-- 2px ink divider line across the page width -->
+<div class="w-full h-[2px] bg-[#1C1A16]"></div>
+</header>
+<!-- 2. TODAY NUMBERS (METRIK HARI INI) - 24px below header divider -->
+<section class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 border-b border-[#D9D1C1] divide-y sm:divide-y-0 sm:divide-x divide-[#D9D1C1] pb-6"><!-- Col 1 -->
+<div class="flex flex-col px-4 first:pl-0 last:pr-0">
+<span class="font-data text-[32px] font-medium text-[#1C1A16] leading-none tnum whitespace-nowrap">47</span>
+<span class="font-label text-xs font-semibold text-[#1C1A16] mt-2.5">Dipinjam hari ini</span>
+<span class="font-data text-[11px] font-normal text-[#5E584D] mt-1 tnum">+8 dari kemarin</span>
+</div>
+<!-- Col 2 -->
+<div class="flex flex-col px-4 last:pr-0">
+<span class="font-data text-[32px] font-medium text-[#1C1A16] leading-none tnum whitespace-nowrap">39</span>
+<span class="font-label text-xs font-semibold text-[#1C1A16] mt-2.5">Dikembalikan</span>
+<span class="font-data text-[11px] font-normal text-[#5E584D] mt-1 tnum">+4 dari kemarin</span>
+</div>
+<!-- Col 3: Terlambat in oxblood -->
+<div class="flex flex-col px-4 last:pr-0">
+<span class="font-data text-[32px] font-medium text-[#7A2420] leading-none tnum whitespace-nowrap">23</span>
+<span class="font-label text-xs font-semibold text-[#1C1A16] mt-2.5">Terlambat</span>
+<span class="font-data text-[11px] font-normal text-[#5E584D] mt-1 tnum">+2 dari kemarin</span>
+</div>
+<!-- Col 4: Siap diambil in ochre -->
+<div class="flex flex-col px-4 last:pr-0">
+<span class="font-data text-[32px] font-medium text-[#A66A12] leading-none tnum whitespace-nowrap">6</span>
+<span class="font-label text-xs font-semibold text-[#1C1A16] mt-2.5">Siap diambil</span>
+<span class="font-data text-[11px] font-normal text-[#5E584D] mt-1 tnum">-1 dari kemarin</span>
+</div>
+<!-- Col 5: Denda belum lunas -->
+<div class="flex flex-col px-4 last:pr-0 min-w-0">
+<span class="font-data text-[32px] font-medium text-[#1C1A16] leading-none tnum whitespace-nowrap">Rp184.500</span>
+<span class="font-label text-xs font-semibold text-[#1C1A16] mt-2.5">Denda belum lunas</span>
+<span class="font-data text-[11px] font-normal text-[#5E584D] mt-1 tnum">+Rp12.000 hari ini</span>
+</div></section>
+<!-- 3. TERLAMBAT SECTION (Full Width 12 cols) - 48px vertical gap -->
+<section class="mt-12 flex flex-col w-full pb-8 border-b border-[#D9D1C1]">
+<!-- Section Header: Title on left, kicker directly underneath, view-all on right baseline-aligned with title -->
+<div class="flex items-start justify-between pb-2 border-b border-[#D9D1C1] mb-4">
+<div class="flex flex-col">
+<h2 class="font-h2 text-[26px] tracking-normal uppercase text-[#1C1A16] leading-none">TERLAMBAT</h2>
+<span class="font-data text-[11px] text-[#7A2420] font-medium tracking-wider uppercase mt-1">TINDAKAN DIPERLUKAN</span>
+</div>
+<a class="font-body-sm text-xs font-semibold text-[#5E584D] hover:text-[#7A2420] transition-colors flex items-center gap-1 pt-1" href="#">
+<span class="">Lihat semua (23)</span>
+<span class="text-sm leading-none">→</span>
+</a>
+</div>
+<!-- Full Width Table -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-[#1C1A16] text-[#5E584D] font-label text-[11px] tracking-wider uppercase">
+<th class="py-2.5 px-3 font-semibold">Anggota</th>
+<th class="py-2.5 px-3 font-semibold">Judul</th>
+<th class="py-2.5 px-3 font-semibold">Barcode</th>
+<th class="py-2.5 px-3 font-semibold text-right">Jatuh Tempo</th>
+<th class="py-2.5 px-3 font-semibold text-center">Terlambat</th>
+<th class="py-2.5 px-3 font-semibold text-right">Denda</th>
+<th class="py-2.5 px-3 font-semibold text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#D9D1C1] text-xs font-body-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-[#FAF7F2] transition-colors">
+<td class="py-3 px-3 whitespace-nowrap">
+<span class="font-semibold text-[#1C1A16] block">Nadia Putri</span>
+<span class="text-[11px] text-[#5E584D] font-data">XI IPA 2</span>
+</td>
+<td class="py-3 px-3 text-[#1C1A16] font-semibold">Laskar Pelangi</td>
+<td class="py-3 px-3 font-data text-xs text-[#5E584D] whitespace-nowrap tnum">PST-2026-000142</td>
+<td class="py-3 px-3 font-data text-xs text-right whitespace-nowrap text-[#1C1A16] tnum">20 Sep 2026</td>
+<td class="py-3 px-3 text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 bg-[#7A2420] text-white font-data text-[11px] rounded-full font-medium leading-tight">8 hari</span>
+</td>
+<td class="py-3 px-3 font-data text-xs text-right text-[#1C1A16] font-medium whitespace-nowrap tnum">Rp8.000</td>
+<td class="py-3 px-3 text-right whitespace-nowrap">
+<button class="h-7 px-3 text-[11px] font-label font-semibold border border-[#D9D1C1] hover:border-[#1C1A16] hover:bg-[#FAF7F2] rounded-[2px] text-[#1C1A16] transition-colors" type="button">Ingatkan</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#FAF7F2] transition-colors">
+<td class="py-3 px-3 whitespace-nowrap">
+<span class="font-semibold text-[#1C1A16] block">Dimas Arya</span>
+<span class="text-[11px] text-[#5E584D] font-data">XII IPS 1</span>
+</td>
+<td class="py-3 px-3 text-[#1C1A16] font-semibold">Bumi Manusia</td>
+<td class="py-3 px-3 font-data text-xs text-[#5E584D] whitespace-nowrap tnum">PST-2026-000219</td>
+<td class="py-3 px-3 font-data text-xs text-right whitespace-nowrap text-[#1C1A16] tnum">23 Sep 2026</td>
+<td class="py-3 px-3 text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 bg-[#7A2420] text-white font-data text-[11px] rounded-full font-medium leading-tight">5 hari</span>
+</td>
+<td class="py-3 px-3 font-data text-xs text-right text-[#1C1A16] font-medium whitespace-nowrap tnum">Rp5.000</td>
+<td class="py-3 px-3 text-right whitespace-nowrap">
+<button class="h-7 px-3 text-[11px] font-label font-semibold border border-[#D9D1C1] hover:border-[#1C1A16] hover:bg-[#FAF7F2] rounded-[2px] text-[#1C1A16] transition-colors" type="button">Ingatkan</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-[#FAF7F2] transition-colors">
+<td class="py-3 px-3 whitespace-nowrap">
+<span class="font-semibold text-[#1C1A16] block">Siti Rahma</span>
+<span class="text-[11px] text-[#5E584D] font-data">X MIPA 3</span>
+</td>
+<td class="py-3 px-3 text-[#1C1A16] font-semibold">Cantik Itu Luka</td>
+<td class="py-3 px-3 font-data text-xs text-[#5E584D] whitespace-nowrap tnum">PST-2026-000305</td>
+<td class="py-3 px-3 font-data text-xs text-right whitespace-nowrap text-[#1C1A16] tnum">16 Sep 2026</td>
+<td class="py-3 px-3 text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 bg-[#7A2420] text-white font-data text-[11px] rounded-full font-medium leading-tight">12 hari</span>
+</td>
+<td class="py-3 px-3 font-data text-xs text-right text-[#1C1A16] font-medium whitespace-nowrap tnum">Rp12.000</td>
+<td class="py-3 px-3 text-right whitespace-nowrap">
+<button class="h-7 px-3 text-[11px] font-label font-semibold border border-[#D9D1C1] hover:border-[#1C1A16] hover:bg-[#FAF7F2] rounded-[2px] text-[#1C1A16] transition-colors" type="button">Ingatkan</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-[#FAF7F2] transition-colors">
+<td class="py-3 px-3 whitespace-nowrap">
+<span class="font-semibold text-[#1C1A16] block">Ahmad Fauzi</span>
+<span class="text-[11px] text-[#5E584D] font-data">Staf Lab</span>
+</td>
+<td class="py-3 px-3 text-[#1C1A16] font-semibold">Filosofi Teras</td>
+<td class="py-3 px-3 font-data text-xs text-[#5E584D] whitespace-nowrap tnum">PST-2026-000412</td>
+<td class="py-3 px-3 font-data text-xs text-right whitespace-nowrap text-[#1C1A16] tnum">21 Sep 2026</td>
+<td class="py-3 px-3 text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 bg-[#7A2420] text-white font-data text-[11px] rounded-full font-medium leading-tight">7 hari</span>
+</td>
+<td class="py-3 px-3 font-data text-xs text-right text-[#1C1A16] font-medium whitespace-nowrap tnum">Rp7.000</td>
+<td class="py-3 px-3 text-right whitespace-nowrap">
+<button class="h-7 px-3 text-[11px] font-label font-semibold border border-[#D9D1C1] hover:border-[#1C1A16] hover:bg-[#FAF7F2] rounded-[2px] text-[#1C1A16] transition-colors" type="button">Ingatkan</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-[#FAF7F2] transition-colors">
+<td class="py-3 px-3 whitespace-nowrap">
+<span class="font-semibold text-[#1C1A16] block">Ratih Kumala</span>
+<span class="text-[11px] text-[#5E584D] font-data">XII Bahasa</span>
+</td>
+<td class="py-3 px-3 text-[#1C1A16] font-semibold">Negeri 5 Menara</td>
+<td class="py-3 px-3 font-data text-xs text-[#5E584D] whitespace-nowrap tnum">PST-2026-000551</td>
+<td class="py-3 px-3 font-data text-xs text-right whitespace-nowrap text-[#1C1A16] tnum">24 Sep 2026</td>
+<td class="py-3 px-3 text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 bg-[#7A2420] text-white font-data text-[11px] rounded-full font-medium leading-tight">4 hari</span>
+</td>
+<td class="py-3 px-3 font-data text-xs text-right text-[#1C1A16] font-medium whitespace-nowrap tnum">Rp4.000</td>
+<td class="py-3 px-3 text-right whitespace-nowrap">
+<button class="h-7 px-3 text-[11px] font-label font-semibold border border-[#D9D1C1] hover:border-[#1C1A16] hover:bg-[#FAF7F2] rounded-[2px] text-[#1C1A16] transition-colors" type="button">Ingatkan</button>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-[#FAF7F2] transition-colors">
+<td class="py-3 px-3 whitespace-nowrap">
+<span class="font-semibold text-[#1C1A16] block">Bagus Prasetyo</span>
+<span class="text-[11px] text-[#5E584D] font-data">XI IPS 3</span>
+</td>
+<td class="py-3 px-3 text-[#1C1A16] font-semibold">Ronggeng Dukuh Paruk</td>
+<td class="py-3 px-3 font-data text-xs text-[#5E584D] whitespace-nowrap tnum">PST-2026-000624</td>
+<td class="py-3 px-3 font-data text-xs text-right whitespace-nowrap text-[#1C1A16] tnum">19 Sep 2026</td>
+<td class="py-3 px-3 text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 bg-[#7A2420] text-white font-data text-[11px] rounded-full font-medium leading-tight">9 hari</span>
+</td>
+<td class="py-3 px-3 font-data text-xs text-right text-[#1C1A16] font-medium whitespace-nowrap tnum">Rp9.000</td>
+<td class="py-3 px-3 text-right whitespace-nowrap">
+<button class="h-7 px-3 text-[11px] font-label font-semibold border border-[#D9D1C1] hover:border-[#1C1A16] hover:bg-[#FAF7F2] rounded-[2px] text-[#1C1A16] transition-colors" type="button">Ingatkan</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- 4. SIAP DIAMBIL (Full Width 12 cols, 3-column grid) - 48px vertical gap -->
+<section class="mt-12 flex flex-col w-full pb-8 border-b border-[#D9D1C1]">
+<!-- Section Header: 'SIAP DIAMBIL (6)' in Anton, kicker under, view-all on right -->
+<div class="flex items-start justify-between pb-2 border-b border-[#D9D1C1] mb-6">
+<div class="flex flex-col">
+<h2 class="font-h2 text-[26px] tracking-normal uppercase text-[#1C1A16] leading-none">SIAP DIAMBIL (6)</h2>
+<span class="font-data text-[11px] text-[#5E584D] font-medium tracking-wider uppercase mt-1">RAK RESERVASI</span>
+</div>
+<a class="font-body-sm text-xs font-semibold text-[#5E584D] hover:text-[#7A2420] transition-colors flex items-center gap-1 pt-1" href="#">
+<span class="">Lihat semua (6)</span>
+<span class="text-sm leading-none">→</span>
+</a>
+</div>
+<!-- 3-Column Grid separated by vertical hairline borders (#D9D1C1) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-y md:divide-y-0 lg:divide-y-0 md:divide-x divide-[#D9D1C1]">
+<!-- Col 1: Items 1 & 2 -->
+<div class="flex flex-col divide-y divide-[#D9D1C1] pr-0 md:pr-6">
+<!-- Item 1 -->
+<div class="pb-5 pt-1">
+<div class="flex items-start justify-between gap-2">
+<span class="text-[15px] font-semibold text-[#1C1A16] leading-tight">Arok Dedes</span>
+<span class="px-2 py-0.5 border border-[#C48226] text-[#A66A12] font-data text-[10px] rounded-full whitespace-nowrap font-medium">Disimpan</span>
+</div>
+<div class="text-xs text-[#5E584D] mt-1">Fajar Ramadhan · <span class="font-data text-[11px]">XI IPA 1</span></div>
+<div class="flex items-center justify-between mt-3 pt-2 border-t border-dashed border-[#D9D1C1]">
+<span class="font-data text-[11px] text-[#5E584D] px-1.5 py-0.5 border border-[#D9D1C1] bg-[#FAF7F2] rounded-[2px] leading-none">899.221 PRA a</span>
+<!-- Batas ambil: 1 Okt (Default ink) -->
+<span class="font-data text-xs text-[#1C1A16] font-medium tnum">Batas ambil 1 Okt</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="pt-5 pb-5 md:pb-1">
+<div class="flex items-start justify-between gap-2">
+<span class="text-[15px] font-semibold text-[#1C1A16] leading-tight">Gadis Kretek</span>
+<span class="px-2 py-0.5 border border-[#C48226] text-[#A66A12] font-data text-[10px] rounded-full whitespace-nowrap font-medium">Disimpan</span>
+</div>
+<div class="text-xs text-[#5E584D] mt-1">Dewi Sartika · <span class="font-data text-[11px]">Guru Sejarah</span></div>
+<div class="flex items-center justify-between mt-3 pt-2 border-t border-dashed border-[#D9D1C1]">
+<span class="font-data text-[11px] text-[#5E584D] px-1.5 py-0.5 border border-[#D9D1C1] bg-[#FAF7F2] rounded-[2px] leading-none">899.221 RAT g</span>
+<!-- Batas ambil: 29 Sep (Tomorrow -> Ochre #A66A12) -->
+<span class="font-data text-xs text-[#A66A12] font-medium tnum">Batas ambil 29 Sep</span>
+</div>
+</div>
+</div>
+<!-- Col 2: Items 3 & 4 -->
+<div class="flex flex-col divide-y divide-[#D9D1C1] px-0 md:px-6">
+<!-- Item 3 -->
+<div class="pb-5 pt-1">
+<div class="flex items-start justify-between gap-2">
+<span class="text-[15px] font-semibold text-[#1C1A16] leading-tight">Laut Bercerita</span>
+<span class="px-2 py-0.5 border border-[#C48226] text-[#A66A12] font-data text-[10px] rounded-full whitespace-nowrap font-medium">Disimpan</span>
+</div>
+<div class="text-xs text-[#5E584D] mt-1">Anisa Bella · <span class="font-data text-[11px]">X Bahasa</span></div>
+<div class="flex items-center justify-between mt-3 pt-2 border-t border-dashed border-[#D9D1C1]">
+<span class="font-data text-[11px] text-[#5E584D] px-1.5 py-0.5 border border-[#D9D1C1] bg-[#FAF7F2] rounded-[2px] leading-none">899.221 CHU l</span>
+<!-- Batas ambil: 30 Sep (Default ink) -->
+<span class="font-data text-xs text-[#1C1A16] font-medium tnum">Batas ambil 30 Sep</span>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="pt-5 pb-5 md:pb-1">
+<div class="flex items-start justify-between gap-2">
+<span class="text-[15px] font-semibold text-[#1C1A16] leading-tight">Pulang</span>
+<span class="px-2 py-0.5 border border-[#C48226] text-[#A66A12] font-data text-[10px] rounded-full whitespace-nowrap font-medium">Disimpan</span>
+</div>
+<div class="text-xs text-[#5E584D] mt-1">Eko Prasetyo · <span class="font-data text-[11px]">XII MIPA 1</span></div>
+<div class="flex items-center justify-between mt-3 pt-2 border-t border-dashed border-[#D9D1C1]">
+<span class="font-data text-[11px] text-[#5E584D] px-1.5 py-0.5 border border-[#D9D1C1] bg-[#FAF7F2] rounded-[2px] leading-none">899.221 TOH p</span>
+<!-- Batas ambil: 2 Okt (Default ink) -->
+<span class="font-data text-xs text-[#1C1A16] font-medium tnum">Batas ambil 2 Okt</span>
+</div>
+</div>
+</div>
+<!-- Col 3: Items 5 & 6 -->
+<div class="flex flex-col divide-y divide-[#D9D1C1] pl-0 lg:pl-6">
+<!-- Item 5 -->
+<div class="pb-5 pt-1">
+<div class="flex items-start justify-between gap-2">
+<span class="text-[15px] font-semibold text-[#1C1A16] leading-tight">Burung-Burung Manyar</span>
+<span class="px-2 py-0.5 border border-[#C48226] text-[#A66A12] font-data text-[10px] rounded-full whitespace-nowrap font-medium">Disimpan</span>
+</div>
+<div class="text-xs text-[#5E584D] mt-1">Tri Gunawan · <span class="font-data text-[11px]">XII IPS 2</span></div>
+<div class="flex items-center justify-between mt-3 pt-2 border-t border-dashed border-[#D9D1C1]">
+<span class="font-data text-[11px] text-[#5E584D] px-1.5 py-0.5 border border-[#D9D1C1] bg-[#FAF7F2] rounded-[2px] leading-none">899.221 MAN b</span>
+<!-- Batas ambil: 28 Sep (Today -> Ochre #A66A12) -->
+<span class="font-data text-xs text-[#A66A12] font-medium tnum">Batas ambil 28 Sep</span>
+</div>
+</div>
+<!-- Item 6 -->
+<div class="pt-5 pb-1">
+<div class="flex items-start justify-between gap-2">
+<span class="text-[15px] font-semibold text-[#1C1A16] leading-tight">Ronggeng Dukuh Paruk</span>
+<span class="px-2 py-0.5 border border-[#C48226] text-[#A66A12] font-data text-[10px] rounded-full whitespace-nowrap font-medium">Disimpan</span>
+</div>
+<div class="text-xs text-[#5E584D] mt-1">Lestari Widya · <span class="font-data text-[11px]">XI Bahasa</span></div>
+<div class="flex items-center justify-between mt-3 pt-2 border-t border-dashed border-[#D9D1C1]">
+<span class="font-data text-[11px] text-[#5E584D] px-1.5 py-0.5 border border-[#D9D1C1] bg-[#FAF7F2] rounded-[2px] leading-none">899.221 TOH r</span>
+<!-- Batas ambil: 27 Sep (Past -> Oxblood #7A2420) -->
+<span class="font-data text-xs text-[#7A2420] font-medium tnum">Batas ambil 27 Sep</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. SIRKULASI 14 HARI & PALING DIPINJAM (6 cols / 6 cols) - 48px vertical gap -->
+<section class="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 pb-8 border-b border-[#D9D1C1]">
+<!-- LEFT: SIRKULASI 14 HARI (6 cols) -->
+<div class="lg:col-span-6 flex flex-col">
+<div class="flex items-baseline justify-between mb-4 pb-1 border-b border-[#D9D1C1]"><div>
+<h2 class="font-h2 text-[26px] tracking-normal uppercase text-[#1C1A16] leading-none">SIRKULASI 14 HARI</h2>
+<div class="flex items-center gap-3 mt-0.5">
+<span class="font-data text-[11px] text-[#5E584D]">Peminjaman harian September 2026</span>
+<span class="text-[#89726F] text-[10px]">·</span>
+<span class="font-data text-[11px] text-[#89726F]">Batang pucat = perpustakaan tutup</span>
+</div>
+</div>
+<span class="font-data text-[11px] text-[#5E584D]">Unit: Eksemplar</span></div>
+<!-- CSS Bar Chart -->
+<div class="flex flex-col w-full pt-4">
+<div class="relative w-full h-44 flex items-end">
+<!-- Hairlines Gridlines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-0">
+<div class="w-full flex items-center border-b border-[#D9D1C1]/60 pb-0.5">
+<span class="font-data text-[10px] text-[#89726F] w-6 leading-none tnum">50</span>
+<div class="flex-1 border-b border-[#D9D1C1]"></div>
+</div>
+<div class="w-full flex items-center border-b border-[#D9D1C1]/60 pb-0.5">
+<span class="font-data text-[10px] text-[#89726F] w-6 leading-none tnum">40</span>
+<div class="flex-1 border-b border-[#D9D1C1]"></div>
+</div>
+<div class="w-full flex items-center border-b border-[#D9D1C1]/60 pb-0.5">
+<span class="font-data text-[10px] text-[#89726F] w-6 leading-none tnum">30</span>
+<div class="flex-1 border-b border-[#D9D1C1]"></div>
+</div>
+<div class="w-full flex items-center border-b border-[#D9D1C1]/60 pb-0.5">
+<span class="font-data text-[10px] text-[#89726F] w-6 leading-none tnum">20</span>
+<div class="flex-1 border-b border-[#D9D1C1]"></div>
+</div>
+<div class="w-full flex items-center border-b border-[#D9D1C1]/60 pb-0.5">
+<span class="font-data text-[10px] text-[#89726F] w-6 leading-none tnum">10</span>
+<div class="flex-1 border-b border-[#D9D1C1]"></div>
+</div>
+<div class="w-full flex items-center pb-0.5">
+<span class="font-data text-[10px] text-[#89726F] w-6 leading-none tnum">0</span>
+<div class="flex-1 border-b border-[#1C1A16]"></div>
+</div>
+</div>
+<!-- 14 Bars -->
+<div class="relative z-10 w-full pl-6 flex items-end justify-between gap-1 h-full pb-[1px]">
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#1C1A16] rounded-t-[1px]" style="height: 44%;"></div>
+</div>
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#1C1A16] rounded-t-[1px]" style="height: 56%;"></div>
+</div>
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#1C1A16] rounded-t-[1px]" style="height: 70%;"></div>
+</div>
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#1C1A16] rounded-t-[1px]" style="height: 62%;"></div>
+</div>
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#1C1A16] rounded-t-[1px]" style="height: 36%;"></div>
+</div>
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#D9D1C1] rounded-t-[1px]" style="height: 16%;"></div>
+</div>
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#1C1A16] rounded-t-[1px]" style="height: 80%;"></div>
+</div>
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#1C1A16] rounded-t-[1px]" style="height: 68%;"></div>
+</div>
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#1C1A16] rounded-t-[1px]" style="height: 58%;"></div>
+</div>
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#1C1A16] rounded-t-[1px]" style="height: 76%;"></div>
+</div>
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#1C1A16] rounded-t-[1px]" style="height: 84%;"></div>
+</div>
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#1C1A16] rounded-t-[1px]" style="height: 30%;"></div>
+</div>
+<div class="flex-1 flex flex-col items-center h-full justify-end group">
+<div class="w-full max-w-[18px] bg-[#D9D1C1] rounded-t-[1px]" style="height: 24%;"></div>
+</div>
+<!-- Day 28: 47 (Hari Ini - Oxblood) -->
+<div class="flex-1 flex flex-col items-center h-full justify-end relative">
+<span class="font-data text-[10px] font-semibold text-[#7A2420] leading-none mb-1 tnum">47</span>
+<div class="w-full max-w-[18px] bg-[#7A2420] rounded-t-[1px]" style="height: 94%;"></div>
+</div>
+</div>
+</div>
+<!-- Dates Row -->
+<div class="w-full pl-6 flex justify-between gap-1 pt-2 border-t border-[#1C1A16]">
+<span class="flex-1 text-center font-data text-[11px] text-[#5E584D] tnum">15</span>
+<span class="flex-1 text-center font-data text-[11px] text-[#5E584D] tnum">16</span>
+<span class="flex-1 text-center font-data text-[11px] text-[#5E584D] tnum">17</span>
+<span class="flex-1 text-center font-data text-[11px] text-[#5E584D] tnum">18</span>
+<span class="flex-1 text-center font-data text-[11px] text-[#5E584D] tnum">19</span>
+<span class="flex-1 text-center font-data text-[11px] text-[#89726F] tnum">20</span>
+<span class="flex-1 text-center font-data text-[11px] text-[#5E584D] tnum">21</span>
+<span class="flex-1 text-center font-data text-[11px] text-[#5E584D] tnum">22</span>
+<span class="flex-1 text-center font-data text-[11px] text-[#5E584D] tnum">23</span>
+<span class="flex-1 text-center font-data text-[11px] text-[#5E584D] tnum">24</span>
+<span class="flex-1 text-center font-data text-[11px] text-[#5E584D] tnum">25</span>
+<span class="flex-1 text-center font-data text-[11px] text-[#5E584D] tnum">26</span>
+<span class="flex-1 text-center font-data text-[11px] text-[#89726F] tnum">27</span>
+<span class="flex-1 text-center font-data text-[11px] font-bold text-[#7A2420] tnum">28</span>
+</div>
+</div>
+</div>
+<!-- RIGHT: PALING DIPINJAM BULAN INI (6 cols) -->
+<div class="lg:col-span-6 flex flex-col">
+<div class="flex items-baseline justify-between mb-4 pb-1 border-b border-[#D9D1C1]">
+<h2 class="font-h2 text-[26px] tracking-normal uppercase text-[#1C1A16] leading-none">PALING DIPINJAM BULAN INI</h2>
+<span class="font-data text-[11px] text-[#5E584D] uppercase tracking-wider">Top 5 judul September</span>
+</div>
+<div class="flex flex-col divide-y divide-[#D9D1C1]">
+<!-- Book 1 -->
+<div class="py-2.5 flex items-center justify-between gap-3 first:pt-0">
+<div class="flex items-center gap-3 min-w-0">
+<span class="font-data text-base font-medium text-[#89726F] w-6 text-center leading-none tnum">01</span>
+<div class="w-9 h-11 flex-shrink-0 bg-[#EDE7DA] border border-[#D9D1C1] rounded-[1px] p-1 flex flex-col justify-between">
+<span class="font-data text-[7px] text-[#5E584D] leading-none">NOVEL</span>
+<span class="text-[8px] font-bold text-[#1C1A16] leading-tight line-clamp-2">Bumi Manusia</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-semibold text-[#1C1A16] truncate leading-tight">Bumi Manusia</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-xs text-[#5E584D] truncate">Pramoedya Ananta Toer</span>
+<span class="font-data text-[10px] text-[#5E584D] px-1 border border-[#D9D1C1] rounded-[2px] leading-none">899.221 PRA b</span>
+</div>
+</div>
+</div>
+<div class="font-data text-sm font-semibold text-[#1C1A16] pl-2 text-right whitespace-nowrap tnum">32×</div>
+</div>
+<!-- Book 2 -->
+<div class="py-2.5 flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<span class="font-data text-base font-medium text-[#89726F] w-6 text-center leading-none tnum">02</span>
+<div class="w-9 h-11 flex-shrink-0 bg-[#EDE7DA] border border-[#D9D1C1] rounded-[1px] p-1 flex flex-col justify-between">
+<span class="font-data text-[7px] text-[#5E584D] leading-none">FILSAFAT</span>
+<span class="text-[8px] font-bold text-[#1C1A16] leading-tight line-clamp-2">Filosofi Teras</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-semibold text-[#1C1A16] truncate leading-tight">Filosofi Teras</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-xs text-[#5E584D] truncate">Henry Manampiring</span>
+<span class="font-data text-[10px] text-[#5E584D] px-1 border border-[#D9D1C1] rounded-[2px] leading-none">158.1 MAN f</span>
+</div>
+</div>
+</div>
+<div class="font-data text-sm font-semibold text-[#1C1A16] pl-2 text-right whitespace-nowrap tnum">28×</div>
+</div>
+<!-- Book 3 -->
+<div class="py-2.5 flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<span class="font-data text-base font-medium text-[#89726F] w-6 text-center leading-none tnum">03</span>
+<div class="w-9 h-11 flex-shrink-0 bg-[#EDE7DA] border border-[#D9D1C1] rounded-[1px] p-1 flex flex-col justify-between">
+<span class="font-data text-[7px] text-[#5E584D] leading-none">NOVEL</span>
+<span class="text-[8px] font-bold text-[#1C1A16] leading-tight line-clamp-2">Laskar Pelangi</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-semibold text-[#1C1A16] truncate leading-tight">Laskar Pelangi</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-xs text-[#5E584D] truncate">Andrea Hirata</span>
+<span class="font-data text-[10px] text-[#5E584D] px-1 border border-[#D9D1C1] rounded-[2px] leading-none">899.221 HIR l</span>
+</div>
+</div>
+</div>
+<div class="font-data text-sm font-semibold text-[#1C1A16] pl-2 text-right whitespace-nowrap tnum">25×</div>
+</div>
+<!-- Book 4 -->
+<div class="py-2.5 flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<span class="font-data text-base font-medium text-[#89726F] w-6 text-center leading-none tnum">04</span>
+<div class="w-9 h-11 flex-shrink-0 bg-[#EDE7DA] border border-[#D9D1C1] rounded-[1px] p-1 flex flex-col justify-between">
+<span class="font-data text-[7px] text-[#5E584D] leading-none">FIKSI</span>
+<span class="text-[8px] font-bold text-[#1C1A16] leading-tight line-clamp-2">Laut Bercerita</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-semibold text-[#1C1A16] truncate leading-tight">Laut Bercerita</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-xs text-[#5E584D] truncate">Leila S. Chudori</span>
+<span class="font-data text-[10px] text-[#5E584D] px-1 border border-[#D9D1C1] rounded-[2px] leading-none">899.221 CHU l</span>
+</div>
+</div>
+</div>
+<div class="font-data text-sm font-semibold text-[#1C1A16] pl-2 text-right whitespace-nowrap tnum">21×</div>
+</div>
+<!-- Book 5 -->
+<div class="py-2.5 flex items-center justify-between gap-3">
+<div class="flex items-center gap-3 min-w-0">
+<span class="font-data text-base font-medium text-[#89726F] w-6 text-center leading-none tnum">05</span>
+<div class="w-9 h-11 flex-shrink-0 bg-[#EDE7DA] border border-[#D9D1C1] rounded-[1px] p-1 flex flex-col justify-between">
+<span class="font-data text-[7px] text-[#5E584D] leading-none">MOTIVASI</span>
+<span class="text-[8px] font-bold text-[#1C1A16] leading-tight line-clamp-2">Atomic Habits</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-semibold text-[#1C1A16] truncate leading-tight">Atomic Habits</span>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-xs text-[#5E584D] truncate">James Clear</span>
+<span class="font-data text-[10px] text-[#5E584D] px-1 border border-[#D9D1C1] rounded-[2px] leading-none">158.1 CLE a</span>
+</div>
+</div>
+</div>
+<div class="font-data text-sm font-semibold text-[#1C1A16] pl-2 text-right whitespace-nowrap tnum">19×</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. FOOTER AUDIT STRIP - 48px vertical gap -->
+<section class="mt-12 bg-[#EDE7DA] border border-[#D9D1C1] p-4 rounded-[2px]">
+<div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-[#D9D1C1]">
+<span class="font-data text-[11px] uppercase tracking-widest text-[#5E584D] font-semibold">AKTIVITAS TERAKHIR</span>
+<span class="font-data text-[11px] text-[#89726F] tnum">Auto-refresh: Aktif</span>
+</div>
+<div class="flex flex-col gap-2 font-body-sm text-xs text-[#1C1A16]">
+<div class="flex items-baseline gap-2">
+<span class="font-data font-medium text-[#5E584D] tnum">14.02</span>
+<span class="text-[#89726F]">·</span>
+<span class="">Rina meminjamkan <span class="font-data text-[#1C1A16] font-semibold tnum">PST-2026-000142</span> (Bumi Manusia) ke <span class="font-medium text-[#1C1A16]">Nadia Putri</span> (XI IPA 2)</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-data font-medium text-[#5E584D] tnum">13.55</span>
+<span class="text-[#89726F]">·</span>
+<span class="">Rina memproses pengembalian <span class="font-data text-[#1C1A16] font-semibold tnum">PST-2026-000088</span> (Laskar Pelangi) dari <span class="font-medium text-[#1C1A16]">Dimas Arya</span></span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-data font-medium text-[#5E584D] tnum">13.41</span>
+<span class="text-[#89726F]">·</span>
+<span class="">Rina menerima reservasi baru <span class="font-data text-[#1C1A16] font-semibold tnum">#RES-892</span> untuk <span class="font-semibold text-[#1C1A16]">Arok Dedes</span> oleh Fajar Ramadhan</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-data font-medium text-[#5E584D] tnum">13.18</span>
+<span class="text-[#89726F]">·</span>
+<span class="">Sistem mencatat denda <span class="font-data font-semibold text-[#7A2420] tnum">Rp8.000</span> atas keterlambatan anggota <span class="font-medium text-[#1C1A16]">Siti Rahma</span></span>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+
+
+</body></html>

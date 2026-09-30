@@ -1,0 +1,70 @@
+name: pustaka
+
+# Infra lokal untuk development. Jalankan: docker compose -f docker/docker-compose.yml up -d
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: pustaka
+      POSTGRES_PASSWORD: pustaka
+      POSTGRES_DB: pustaka
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pustaka"]
+      interval: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+
+  mailpit:
+    image: axllent/mailpit
+    ports: ["1025:1025", "8025:8025"]
+
+  # ── Aplikasi dalam container (opsional): docker compose --profile app up -d --build
+  # Default dev tetap `pnpm start:dev` / `pnpm dev` di host.
+  backend:
+    profiles: [app]
+    build:
+      context: ..
+      dockerfile: docker/backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql://pustaka:pustaka@postgres:5432/pustaka
+      REDIS_URL: redis://redis:6379
+      CORS_ORIGINS: http://localhost:3000
+      PORTAL_URL: http://localhost:3000
+      PUBLIC_API_URL: http://localhost:3000
+      JWT_ACCESS_SECRET: dev-only-secret-change-me-dev-only-secret
+      COOKIE_SECURE: "false"
+      SMTP_HOST: mailpit
+      SMTP_PORT: 1025
+    volumes:
+      - uploads:/app/uploads
+    ports: ["3001:3001"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+
+  frontend:
+    profiles: [app]
+    build:
+      context: ..
+      dockerfile: docker/frontend/Dockerfile
+      args:
+        BACKEND_URL: http://backend:3001
+    environment:
+      BACKEND_URL: http://backend:3001
+    ports: ["3000:3000"]
+    depends_on:
+      backend: { condition: service_healthy }
+
+volumes:
+  pgdata:
+  uploads:
