@@ -2,6 +2,12 @@
 
 Sistem manajemen perpustakaan untuk sekolah atau kampus (single-tenant): katalog, sirkulasi lewat scan barcode/QR, portal anggota (OPAC), reservasi, denda, laporan, dan pencarian semantik berbasis AI.
 
+<p>
+  <img src="docs/assets/logos/nextdotjs.svg" alt="Next.js" height="40" />&nbsp;&nbsp;
+  <img src="docs/assets/logos/nestjs.svg" alt="NestJS" height="40" />&nbsp;&nbsp;
+  <img src="docs/assets/logos/prisma.svg" alt="Prisma" height="40" />
+</p>
+
 ![Beranda OPAC](docs/design/image/09-opac-home.png)
 
 ## Fitur
